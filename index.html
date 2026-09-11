@@ -117,7 +117,7 @@
   }
   /* the closing line must stay on one line next to the picture */
   .haspic .huge{font-size:clamp(32px,5.2vw,70px)}
-  @media print{.haspic .pic{mix-blend-mode:normal}}
+
 
   .bar-nav .right{display:flex;align-items:center;gap:16px}
   .fsbtn{
@@ -128,7 +128,24 @@
   }
   .fsbtn:hover{color:var(--ink);border-color:var(--ink)}
   .fsbtn svg{display:block}
-  @media print{.bar-nav,.prog,.hint{display:none}}
+  @media print{
+    @page{size:13.333in 7.5in;margin:0}
+    html,body{background:var(--paper);height:auto}
+    body{-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:0}
+    .bar-nav,.prog,.hint{display:none !important}
+    .slide{
+      display:flex !important;
+      width:13.333in;height:7.5in;min-height:0;
+      padding:.25in .7in;overflow:hidden;
+      break-after:page;page-break-after:always;break-inside:avoid;
+    }
+    .slide:last-of-type{break-after:auto;page-break-after:auto}
+    .figslide{padding-left:.35in;padding-right:.35in}
+    .figwrap{overflow:visible}
+    .haspic .pic{mix-blend-mode:multiply}
+    .card{break-inside:avoid}
+    th,td{padding-top:.34em;padding-bottom:.34em}
+  }
 </style>
 </head>
 <body>

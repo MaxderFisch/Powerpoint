@@ -4,6 +4,11 @@ Group presentation for Global English — 10 minutes, Monday 9/14.
 
 Open `index.html` in a browser. That's the whole presentation.
 
+`English-is-a-Thief.pdf` is the backup, in case the website does not work on the
+school computer. Same 11 slides, one per page, 16:9. To make it again after a
+change: open the page and print it to PDF (Cmd+P), the layout is already set up
+for it.
+
 **Controls:** `→` next · `←` back · `F` fullscreen · you can also just click.
 On the quiz slide, click a word to show the answer.
 
