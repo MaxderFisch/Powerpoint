@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English is a Thief</title>
+<style>
+  :root{
+    --ink:#23211e; --soft:#7b736b; --paper:#faf8f4; --line:#ddd6cc;
+    --mark:#ffe27a; --red:#b03a2e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height:1.45; -webkit-font-smoothing:antialiased;
+  }
+  .slide{
+    display:none; min-height:100vh; padding:4vh 6vw 9vh;
+    flex-direction:column; justify-content:center;
+  }
+  .slide.on{display:flex}
+  .inner{width:100%;max-width:1180px;margin:0 auto}
+
+  h1{font-size:clamp(34px,5.2vw,68px);line-height:1.08;letter-spacing:-.02em}
+  h2{font-size:clamp(26px,3.6vw,48px);line-height:1.12;letter-spacing:-.015em;margin-bottom:.5em}
+  p{font-size:clamp(17px,1.9vw,26px);max-width:24em}
+  p + p{margin-top:.7em}
+  .lead{font-size:clamp(19px,2.3vw,32px)}
+  .small{font-size:clamp(13px,1.1vw,16px);color:var(--soft);max-width:34em}
+  .mark{background:var(--mark);padding:0 .12em}
+  em{font-style:italic}
+  b{font-weight:700}
+
+  .kicker{
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--soft);margin-bottom:1.4em;
+  }
+  .rule{width:70px;height:3px;background:var(--ink);margin:1.1em 0}
+
+  /* title slide */
+  .title h1{font-size:clamp(44px,9vw,120px);line-height:.98}
+  .title .sub{font-size:clamp(18px,2.4vw,32px);color:var(--soft);margin-top:.6em}
+  .title .by{margin-top:2.4em;font-size:clamp(14px,1.4vw,19px);color:var(--soft)}
+  .hint{margin-top:1.2em;font-size:13px;color:var(--soft)}
+
+  /* big number / statement */
+  .huge{font-size:clamp(40px,7vw,96px);line-height:1;letter-spacing:-.03em;font-weight:700}
+
+  /* graphics */
+  .figwrap{overflow-x:auto;margin:1.2em 0 .6em;padding-bottom:6px}
+  svg.tl{width:100%;min-width:820px;height:auto;display:block}
+  svg.bar{width:100%;max-width:1000px;height:auto;display:block;margin:1.4em 0 .4em}
+  .figslide{padding-left:3vw;padding-right:3vw}
+  .figslide .inner{max-width:1520px}
+
+  /* word rows */
+  .words{display:flex;flex-wrap:wrap;gap:.5em .7em;margin:.9em 0}
+  .words span{
+    border:1px solid var(--line);background:#fff;border-radius:3px;
+    padding:.3em .7em;font-size:clamp(16px,1.9vw,26px);font-style:italic;
+  }
+  .words.big span{font-size:clamp(22px,3.2vw,44px);font-style:normal;font-weight:700;
+    background:var(--mark);border-color:var(--ink)}
+
+  /* cow/beef table */
+  table{border-collapse:collapse;margin:1em 0;font-size:clamp(17px,2.2vw,30px)}
+  th,td{padding:.42em 1.1em;text-align:left;border-bottom:1px solid var(--line)}
+  th{font-size:clamp(12px,1.1vw,15px);letter-spacing:.1em;text-transform:uppercase;
+     color:var(--soft);font-weight:400;border-bottom:2px solid var(--ink)}
+  td.fr{font-weight:700}
+  td .arw{color:var(--soft);padding:0 .5em}
+
+  /* origin list */
+  .olist{margin:.9em 0;display:grid;grid-template-columns:1fr 1fr;gap:.35em 2.6em}
+  @media(max-width:760px){.olist{grid-template-columns:1fr}}
+  .olist li{list-style:none;padding:.3em 0;border-bottom:1px solid var(--line)}
+  .olist .w{display:block;font-weight:700;font-size:clamp(17px,2.1vw,28px)}
+  .olist .src{display:block;color:var(--soft);font-size:clamp(12px,1.25vw,17px);line-height:1.35}
+
+  /* quiz cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:1.2em 0}
+  @media(max-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+  .card{
+    border:2px solid var(--ink);background:#fff;border-radius:4px;
+    padding:1.1em .8em;text-align:center;cursor:pointer;user-select:none;
+    min-height:128px;display:flex;flex-direction:column;justify-content:center;
+  }
+  .card .q{font-size:clamp(18px,2.4vw,32px);font-weight:700}
+  .card .a{display:none;margin-top:.45em;font-size:clamp(13px,1.4vw,18px);color:var(--soft);line-height:1.3}
+  .card.open{background:var(--mark)}
+  .card.open .a{display:block;color:#5c554c}
+  .tap{font-size:13px;color:var(--soft)}
+
+  /* footer nav */
+  .bar-nav{
+    position:fixed;left:0;right:0;bottom:0;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:10px 18px;font-size:12px;color:var(--soft);
+    background:linear-gradient(to top,var(--paper) 60%,transparent);
+  }
+  .bar-nav b{color:var(--ink)}
+  .prog{position:fixed;top:0;left:0;height:3px;background:var(--ink);transition:width .18s}
+  /* slides with a drawing next to the text */
+  .haspic .inner{
+    display:grid; grid-template-columns:minmax(0,1fr) var(--picw,300px);
+    gap:3.5vw; align-items:center;
+  }
+  .haspic .pic{
+    width:100%; height:auto; display:block;
+    mix-blend-mode:multiply; filter:contrast(1.06) brightness(1.03);
+  }
+  @media(max-width:880px){
+    .haspic .inner{grid-template-columns:1fr}
+    .haspic .pic{max-width:210px;margin:.8em auto 0}
+  }
+  /* the closing line must stay on one line next to the picture */
+  .haspic .huge{font-size:clamp(32px,5.2vw,70px)}
+  @media print{.haspic .pic{mix-blend-mode:normal}}
+
+  .bar-nav .right{display:flex;align-items:center;gap:16px}
+  .fsbtn{
+    display:inline-flex;align-items:center;gap:6px;
+    font:inherit;font-size:12px;line-height:1;cursor:pointer;
+    color:var(--soft);background:#fff;border:1px solid var(--line);
+    border-radius:3px;padding:6px 9px;
+  }
+  .fsbtn:hover{color:var(--ink);border-color:var(--ink)}
+  .fsbtn svg{display:block}
+  @media print{.bar-nav,.prog,.hint{display:none}}
+</style>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+
+<!-- 1 -->
+<section class="slide haspic title">
+  <div class="inner" style="--picw:430px"><div>
+    <h1>English is<br>a Thief</h1>
+    <p class="sub">Where do English words really come from?</p>
+    <p class="by">Global English &middot; group presentation &middot; 9/14<br>
+       <span style="color:#b9b2aa">[your names here]</span></p>
+    <p class="hint">press &rarr; to start &middot; F = fullscreen</p>
+  </div>
+    <img class="pic" src="img/01-thief.jpg" alt="a cartoon burglar running off with a sack of letters">
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide haspic">
+  <div class="inner" style="--picw:355px"><div>
+    <p class="kicker">the question</p>
+    <h2>English has about<br>170,000 words.</h2>
+    <p class="lead">But how many of them are <em>really</em> English?</p>
+  </div>
+    <img class="pic" src="img/02-dictionary.jpg" alt="a tiny person looking up at a huge stack of dictionaries">
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">the answer</p>
+    <h2>Only 1 word in 4.</h2>
+    <svg viewBox="0 0 1000 190" xmlns="http://www.w3.org/2000/svg" class="bar" role="img" aria-label="Only 25 percent of English words are originally English">
+<rect x="0.0" y="52" width="250.0" height="70" fill="#23211e" stroke="#23211e" stroke-width="1.5"/>
+<text x="125.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Germanic</text>
+<text x="125.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">25%</text>
+<rect x="250.0" y="52" width="290.0" height="70" fill="#b9a888" stroke="#23211e" stroke-width="1.5"/>
+<text x="395.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">French</text>
+<text x="395.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">29%</text>
+<rect x="540.0" y="52" width="280.0" height="70" fill="#d2c5ac" stroke="#23211e" stroke-width="1.5"/>
+<text x="680.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Latin</text>
+<text x="680.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">28%</text>
+<rect x="820.0" y="52" width="50.0" height="70" fill="#e6dcc9" stroke="#23211e" stroke-width="1.5"/>
+<text x="845.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Greek</text>
+<text x="845.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">5%</text>
+<rect x="870.0" y="52" width="130.0" height="70" fill="#f2ede2" stroke="#23211e" stroke-width="1.5"/>
+<text x="935.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Other</text>
+<text x="935.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">13%</text>
+<path d="M 1.0 136 L 1.0 147 L 249.0 147 L 249.0 136" fill="none" stroke="#23211e" stroke-width="1.5"/>
+<text x="125.0" y="170" text-anchor="middle" font-size="16" font-weight="700" fill="#23211e">really English</text>
+<path d="M 251.0 136 L 251.0 147 L 999.0 147 L 999.0 136" fill="none" stroke="#23211e" stroke-width="1.5"/>
+<text x="625.0" y="170" text-anchor="middle" font-size="16" font-weight="700" fill="#23211e">borrowed — 75%</text>
+</svg>
+    <p class="small">Where the words in a big English dictionary come from.
+      Numbers: Finkenstaedt &amp; Wolff, <em>Ordered Profusion</em> (1973), about 80,000 words.<br>
+      But careful: the words we use <em>every day</em> &mdash; <em>the, is, man, water</em> &mdash; are still the old English ones.
+      English borrowed the <em>big</em> vocabulary, not the basics.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide figslide">
+  <div class="inner">
+    <p class="kicker">the crime scene</p>
+    <h2>So who did English steal from?</h2>
+    <div class="figwrap"><svg viewBox="0 0 1280 420" xmlns="http://www.w3.org/2000/svg" class="tl" role="img" aria-label="Timeline: which languages English took words from">
+<line x1="14" y1="210" x2="1266" y2="210" stroke="#23211e" stroke-width="2"/>
+<line x1="80.0" y1="164.0" x2="80.0" y2="204.0" stroke="#23211e" stroke-width="1"/>
+<circle cx="80.0" cy="210" r="7" fill="#23211e"/>
+<rect x="5.0" y="28.0" width="150" height="136" rx="3" fill="#23211e" stroke="#23211e" stroke-width="2"/>
+<text x="80.0" y="55.0" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">Anglo-Saxon</text>
+<text x="80.0" y="74.0" text-anchor="middle" font-size="12" fill="#a9a29a" letter-spacing="0.5">450</text>
+<line x1="51.0" y1="85.0" x2="109.0" y2="85.0" stroke="#5a544e" stroke-width="1"/>
+<text x="80.0" y="108.0" text-anchor="middle" font-size="16" font-style="italic" fill="#ffffff">house</text>
+<text x="80.0" y="129.0" text-anchor="middle" font-size="16" font-style="italic" fill="#ffffff">water</text>
+<text x="80.0" y="150.0" text-anchor="middle" font-size="16" font-style="italic" fill="#ffffff">eat</text>
+<line x1="204.4" y1="216.0" x2="204.4" y2="256.0" stroke="#23211e" stroke-width="1"/>
+<circle cx="204.4" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
+<rect x="129.4" y="256.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="204.4" y="283.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Latin</text>
+<text x="204.4" y="302.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">600</text>
+<line x1="175.4" y1="313.0" x2="233.4" y2="313.0" stroke="#ddd6cc" stroke-width="1"/>
+<text x="204.4" y="336.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">school</text>
+<text x="204.4" y="357.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">street</text>
+<text x="204.4" y="378.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">wine</text>
+<line x1="328.9" y1="164.0" x2="328.9" y2="204.0" stroke="#23211e" stroke-width="1"/>
+<circle cx="328.9" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
+<rect x="253.9" y="28.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="328.9" y="55.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Old Norse</text>
+<text x="328.9" y="74.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">800</text>
+<line x1="299.9" y1="85.0" x2="357.9" y2="85.0" stroke="#ddd6cc" stroke-width="1"/>
+<text x="328.9" y="108.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">sky</text>
+<text x="328.9" y="129.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">egg</text>
+<text x="328.9" y="150.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">they</text>
+<line x1="453.3" y1="216.0" x2="453.3" y2="256.0" stroke="#23211e" stroke-width="1"/>
+<circle cx="453.3" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
+<rect x="378.3" y="256.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="453.3" y="283.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">French</text>
+<text x="453.3" y="302.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1066</text>
+<line x1="424.3" y1="313.0" x2="482.3" y2="313.0" stroke="#ddd6cc" stroke-width="1"/>
+<text x="453.3" y="336.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">beef</text>
+<text x="453.3" y="357.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">money</text>
+<text x="453.3" y="378.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">art</text>
+<line x1="577.8" y1="164.0" x2="577.8" y2="204.0" stroke="#23211e" stroke-width="1"/>
+<circle cx="577.8" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
+<rect x="502.8" y="28.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="577.8" y="55.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Greek</text>
+<text x="577.8" y="74.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1500</text>
+<line x1="548.8" y1="85.0" x2="606.8" y2="85.0" stroke="#ddd6cc" stroke-width="1"/>
+<text x="577.8" y="108.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">drama</text>
+<text x="577.8" y="129.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">atom</text>
+<text x="577.8" y="150.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">idea</text>
+<line x1="702.2" y1="216.0" x2="702.2" y2="256.0" stroke="#23211e" stroke-width="1"/>
+<circle cx="702.2" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
+<rect x="627.2" y="256.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="702.2" y="283.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Arabic</text>
+<text x="702.2" y="302.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1600</text>
+<line x1="673.2" y1="313.0" x2="731.2" y2="313.0" stroke="#ddd6cc" stroke-width="1"/>
+<text x="702.2" y="336.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">coffee</text>
+<text x="702.2" y="357.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">sugar</text>
+<text x="702.2" y="378.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">zero</text>
+<line x1="826.7" y1="164.0" x2="826.7" y2="204.0" stroke="#23211e" stroke-width="1"/>
+<circle cx="826.7" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
+<rect x="751.7" y="28.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="826.7" y="55.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Italian</text>
+<text x="826.7" y="74.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1650</text>
+<line x1="797.7" y1="85.0" x2="855.7" y2="85.0" stroke="#ddd6cc" stroke-width="1"/>
+<text x="826.7" y="108.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">piano</text>
+<text x="826.7" y="129.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">pizza</text>
+<text x="826.7" y="150.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">balcony</text>
+<line x1="951.1" y1="216.0" x2="951.1" y2="256.0" stroke="#23211e" stroke-width="1"/>
+<circle cx="951.1" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
+<rect x="876.1" y="256.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="951.1" y="283.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Hindi</text>
+<text x="951.1" y="302.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1800</text>
+<line x1="922.1" y1="313.0" x2="980.1" y2="313.0" stroke="#ddd6cc" stroke-width="1"/>
+<text x="951.1" y="336.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">shampoo</text>
+<text x="951.1" y="357.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">jungle</text>
+<text x="951.1" y="378.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">pyjamas</text>
+<line x1="1075.6" y1="164.0" x2="1075.6" y2="204.0" stroke="#23211e" stroke-width="1"/>
+<circle cx="1075.6" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
+<rect x="1000.6" y="28.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="1075.6" y="55.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Japanese</text>
+<text x="1075.6" y="74.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1950</text>
+<line x1="1046.6" y1="85.0" x2="1104.6" y2="85.0" stroke="#ddd6cc" stroke-width="1"/>
+<text x="1075.6" y="108.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">tsunami</text>
+<text x="1075.6" y="129.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">karaoke</text>
+<text x="1075.6" y="150.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">emoji</text>
+<line x1="1200.0" y1="216.0" x2="1200.0" y2="256.0" stroke="#23211e" stroke-width="1"/>
+<circle cx="1200.0" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
+<rect x="1125.0" y="256.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="1200.0" y="283.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Korean</text>
+<text x="1200.0" y="302.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">2021</text>
+<line x1="1171.0" y1="313.0" x2="1229.0" y2="313.0" stroke="#ddd6cc" stroke-width="1"/>
+<text x="1200.0" y="336.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">mukbang</text>
+<text x="1200.0" y="357.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">hallyu</text>
+<text x="1200.0" y="378.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">daebak</text>
+</svg></div>
+    <p class="small">Black box = the original English. Everything else came later.
+      Dates are roughly when the words arrived &mdash; not to scale.</p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide haspic">
+  <div class="inner" style="--picw:285px"><div>
+    <p class="kicker">theft no. 1 &middot; 800&ndash;1000</p>
+    <h2>The Vikings came to rob.<br>Then they stayed.</h2>
+    <p>They attacked England for 200 years, and then they lived there.
+       The two languages mixed. English kept their words:</p>
+    <div class="words">
+      <span>sky</span><span>egg</span><span>knife</span><span>window</span>
+      <span>husband</span><span>law</span><span>skin</span><span>ugly</span>
+    </div>
+    <p class="small"><em>window</em> is Old Norse <em>vindauga</em> &mdash; &ldquo;wind-eye&rdquo;. A hole for the wind.</p>
+    <div class="rule"></div>
+    <p>And English also took these:</p>
+    <div class="words big"><span>they</span><span>them</span><span>their</span></div>
+    <p class="lead">Most languages <em>never</em> borrow words like this. English did.</p>
+  </div>
+    <img class="pic" src="img/05-viking.jpg" alt="a viking carrying away a stolen window frame">
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide haspic">
+  <div class="inner" style="--picw:380px"><div>
+    <p class="kicker">theft no. 2 &middot; 1066</p>
+    <h2>The French take over.</h2>
+    <p>William the Conqueror wins. For the next 300 years the kings of England speak French.
+       The farmers keep speaking English.</p>
+    <table>
+      <tr><th>in the field &mdash; English</th><th>on the table &mdash; French</th></tr>
+      <tr><td>cow</td><td class="fr">beef</td></tr>
+      <tr><td>pig</td><td class="fr">pork</td></tr>
+      <tr><td>sheep</td><td class="fr">mutton</td></tr>
+      <tr><td>deer</td><td class="fr">venison</td></tr>
+    </table>
+    <p class="lead">The poor kept the animals. The rich ate them.<br>
+      <span class="mark">1,000 years later we still use both words.</span></p>
+  </div>
+    <img class="pic" src="img/06-cow.jpg" alt="two cows, one of them wearing a french beret">
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide haspic">
+  <div class="inner" style="--picw:285px"><div>
+    <p class="kicker">theft no. 3 &middot; 1600&ndash;1900</p>
+    <h2>Then English went out<br>into the world.</h2>
+    <p>British ships sailed everywhere. They came home with tea, cotton &mdash; and words.</p>
+    <ul class="olist">
+      <li><span class="w">shampoo</span> <span class="src">Hindi <em>ch&#257;mpo</em> &mdash; &ldquo;to press, to massage&rdquo;</span></li>
+      <li><span class="w">pyjamas</span> <span class="src">Hindi / Persian &mdash; &ldquo;leg clothes&rdquo;</span></li>
+      <li><span class="w">jungle</span> <span class="src">Hindi <em>ja&#7749;gal</em></span></li>
+      <li><span class="w">bungalow</span> <span class="src">Hindi &mdash; &ldquo;a house in the Bengal style&rdquo;</span></li>
+      <li><span class="w">safari</span> <span class="src">Swahili &mdash; &ldquo;journey&rdquo;</span></li>
+      <li><span class="w">tea</span> <span class="src">Chinese (Min Nan) <em>t&#251;</em></span></li>
+    </ul>
+    <p class="lead">This is how English became a world language.<br>Not because it is easy &mdash; because of ships and power.</p>
+  </div>
+    <img class="pic" src="img/07-ship.jpg" alt="a sailing ship loaded with soap, tea and pyjamas">
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">quiz</p>
+    <h2>Where is this word from?</h2>
+    <p class="tap">click a word to see the answer</p>
+    <div class="cards">
+      <div class="card"><div class="q">ketchup</div><div class="a">Chinese &mdash; <em>k&#234;-tsiap</em>, a fish sauce. Not American at all.</div></div>
+      <div class="card"><div class="q">chocolate</div><div class="a">Nahuatl (Mexico), through Spanish.</div></div>
+      <div class="card"><div class="q">sofa</div><div class="a">Arabic &mdash; <em>&#7779;uffa</em>, a bench.</div></div>
+      <div class="card"><div class="q">robot</div><div class="a">Czech &mdash; <em>robota</em>, &ldquo;hard work&rdquo;. From a play in 1920.</div></div>
+      <div class="card"><div class="q">tsunami</div><div class="a">Japanese &mdash; &ldquo;harbour wave&rdquo;.</div></div>
+      <div class="card"><div class="q">zero</div><div class="a">Arabic &mdash; <em>&#7779;ifr</em>. So is <em>algebra</em>.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide haspic">
+  <div class="inner" style="--picw:300px"><div>
+    <p class="kicker">and today?</p>
+    <h2>English is still stealing.<br>Right now. From us.</h2>
+    <p>September 2021: the Oxford English Dictionary added <span class="mark">26 Korean words</span> at once.</p>
+    <div class="words">
+      <span>hallyu</span><span>mukbang</span><span>oppa</span><span>unni</span>
+      <span>daebak</span><span>skinship</span><span>chimaek</span><span>manhwa</span>
+      <span>banchan</span><span>K-drama</span><span>konglish</span>
+    </div>
+    <p class="lead">1,000 years ago it was the Vikings.<br>Today it is Korea.</p>
+  </div>
+    <img class="pic" src="img/09-mukbang.jpg" alt="a dictionary eating noodles with chopsticks">
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide haspic">
+  <div class="inner" style="--picw:355px"><div>
+    <p class="kicker">the other direction</p>
+    <h2>And Korea makes<br>its own English.</h2>
+    <div class="words">
+      <span>hand phone</span><span>one-shot</span><span>eye shopping</span>
+      <span>skinship</span><span>fighting!</span><span>apart</span>
+    </div>
+    <p class="lead">An American would not understand these.<br>
+       50 million Koreans do.</p>
+    <div class="rule"></div>
+    <p class="lead"><b>So &mdash; is this wrong English? Or is it just Korean English?</b></p>
+  </div>
+    <img class="pic" src="img/10-konglish.jpg" alt="someone shouting fighting, a tourist looking confused">
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide haspic">
+  <div class="inner" style="--picw:440px"><div>
+    <p class="huge">English is a thief.</p>
+    <div class="rule"></div>
+    <p class="lead">That is exactly why it belongs to everybody.</p>
+    <p class="by" style="margin-top:2.2em;color:#9a938b">Thank you. Any questions?</p>
+  </div>
+    <img class="pic" src="img/11-sharing.jpg" alt="the burglar handing out letters to everybody">
+  </div>
+</section>
+
+<div class="bar-nav">
+  <span>English is a Thief</span>
+  <span class="right">
+    <span><b id="cur">1</b> / <span id="tot">11</span> &nbsp;&nbsp; &larr; &rarr;</span>
+    <button class="fsbtn" id="fs" title="fullscreen (F)">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M1 4V1h3M8 1h3v3M11 8v3H8M4 11H1V8"/>
+      </svg>
+      <span id="fslabel">fullscreen</span>
+    </button>
+  </span>
+</div>
+
+<script>
+  var slides = document.querySelectorAll('.slide');
+  var i = 0;
+  document.getElementById('tot').textContent = slides.length;
+
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
+    document.getElementById('cur').textContent = i + 1;
+    document.getElementById('prog').style.width = ((i + 1) / slides.length * 100) + '%';
+    window.scrollTo(0, 0);
+    location.hash = i + 1;
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { show(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft'  || e.key === 'PageUp')                    { show(i - 1); e.preventDefault(); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End')  show(slides.length - 1);
+    if (e.key === 'f' || e.key === 'F') {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    }
+  });
+
+  // click the right side = next, left side = back (but not on a quiz card)
+  document.addEventListener('click', function(e){
+    if (e.target.closest('.card') || e.target.closest('.fsbtn')) return;
+    show(e.clientX > window.innerWidth * 0.28 ? i + 1 : i - 1);
+  });
+
+  document.getElementById('fs').addEventListener('click', function(e){
+    e.stopPropagation();
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  });
+  document.addEventListener('fullscreenchange', function(){
+    document.getElementById('fslabel').textContent =
+      document.fullscreenElement ? 'exit' : 'fullscreen';
+  });
+
+  document.querySelectorAll('.card').forEach(function(c){
+    c.addEventListener('click', function(){ c.classList.toggle('open'); });
+  });
+
+  var start = parseInt(location.hash.replace('#',''), 10);
+  show(start > 0 ? start - 1 : 0);
+</script>
+</body>
+</html>
