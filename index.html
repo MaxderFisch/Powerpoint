@@ -120,7 +120,7 @@
 
 
   /* family tree of English */
-  svg.tree{width:100%;height:54vh;display:block;margin:.2em auto}
+  svg.tree{width:100%;height:50vh;display:block;margin:.2em auto}
 
   /* the same sentence through the centuries */
   .eras{margin:.8em 0 1em}
@@ -141,6 +141,19 @@
   }
   .wave p{font-size:clamp(13px,1.45vw,19px);max-width:none;margin:0 0 .45em}
   .wave .list{font-size:clamp(15px,1.9vw,25px);font-style:italic;line-height:1.55}
+
+  /* why english borrowed */
+  .reasons{margin:.8em 0 .9em;max-width:920px}
+  .rw{display:grid;grid-template-columns:minmax(0,9.5em) 1fr;gap:1.6em;
+    align-items:baseline;padding:.4em 0;border-bottom:1px solid var(--line)}
+  .rw .lang{font-weight:700;font-size:clamp(17px,2.1vw,28px)}
+  .rw .why{color:var(--soft);font-size:clamp(14px,1.75vw,23px)}
+
+  /* sources */
+  .refs{margin:.8em 0;max-width:1040px}
+  .refs li{list-style:none;padding:.32em 0;border-bottom:1px solid var(--line);
+    font-size:clamp(13px,1.4vw,19px);line-height:1.4}
+  .refs .what{font-weight:700}
 
   .bar-nav .right{display:flex;align-items:center;gap:16px}
   .fsbtn{
@@ -237,11 +250,12 @@
   <div class="inner">
     <p class="kicker">where english comes from</p>
     <h2>So where does English come from?</h2>
+    <p class="lead">It starts <span class="mark">north of the Black Sea</span>, about 6,500 years ago.</p>
     <svg viewBox="0 0 1060 398" xmlns="http://www.w3.org/2000/svg" class="tree" role="img" aria-label="The family tree of English, from Proto-Indo-European down to Modern English">
 <path d="M 38.0 42.0 L 38.0 65.0 L 58.0 65.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
 <rect x="20.0" y="12.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
 <text x="34.0" y="33.0" font-size="15" font-weight="400" fill="#23211e">Proto-Indo-European</text>
-<text x="332.0" y="33.0" font-size="13" fill="#8a827a">about 4500 BC</text>
+<text x="332.0" y="33.0" font-size="13" fill="#8a827a">around 4500 BC &#183; north of the Black Sea</text>
 <path d="M 76.0 80.0 L 76.0 103.0 L 96.0 103.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
 <rect x="58.0" y="50.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
 <text x="72.0" y="71.0" font-size="15" font-weight="400" fill="#23211e">Indo-European</text>
@@ -277,8 +291,8 @@
 <text x="834" y="308.0" font-size="15" font-weight="700" fill="#23211e">from here on</text>
 <text x="834" y="328.0" font-size="15" font-weight="700" fill="#23211e">it is English</text>
 </svg>
-    <p class="small">English was born Germanic &mdash; the same family as German and Dutch.
-      That family line is the <em>25%</em> from the slide before. Everything else was picked up along the way.</p>
+    <p class="small">From there it spread across Europe and India &mdash; that is why English and Hindi
+      are distant cousins. English itself was born Germanic: that line is the <em>25%</em> from the slide before.</p>
   </div>
 </section>
 
@@ -410,6 +424,24 @@
 </svg></div>
     <p class="small">Black box = the original English. Everything else came later.
       Dates are roughly when the words arrived &mdash; not to scale.</p>
+  </div>
+</section>
+
+<!-- NEW: why english borrowed -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">the reason behind it</p>
+    <h2>Why did English borrow so much?</h2>
+    <div class="reasons">
+      <div class="rw"><span class="lang">Latin</span><span class="why">religion &amp; education</span></div>
+      <div class="rw"><span class="lang">Old Norse</span><span class="why">invasion &amp; settlement</span></div>
+      <div class="rw"><span class="lang">French</span><span class="why">conquest</span></div>
+      <div class="rw"><span class="lang">Greek</span><span class="why">science &amp; the Renaissance</span></div>
+      <div class="rw"><span class="lang">Others</span><span class="why">trade</span></div>
+    </div>
+    <p class="lead">Whenever English speakers met new people,
+      <span class="mark">English picked up their words.</span></p>
+    <p class="lead">So let&rsquo;s look at how that happened &mdash; starting with Latin.</p>
   </div>
 </section>
 
@@ -561,10 +593,26 @@
   </div>
 </section>
 
+<!-- NEW: sources -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">sources</p>
+    <h2>Where we got this from.</h2>
+    <ul class="refs">
+      <li><span class="what">The vocabulary numbers</span> &mdash; Finkenstaedt &amp; Wolff, <em>Ordered Profusion</em> (1973), about 80,000 words of the Shorter Oxford English Dictionary</li>
+      <li><span class="what">Word origins</span> &mdash; Oxford English Dictionary and the Online Etymology Dictionary</li>
+      <li><span class="what">The 26 Korean words</span> &mdash; Oxford English Dictionary update, September 2021</li>
+      <li><span class="what">The family tree</span> &mdash; the Indo-European language family; homeland on the Pontic&ndash;Caspian steppe, north of the Black Sea</li>
+      <li><span class="what">The old texts</span> &mdash; West Saxon Gospels (c. 1000) &middot; Wycliffe Bible (c. 1390) &middot; King James Bible (1611)</li>
+      <li><span class="what">Background</span> &mdash; BBC / Open University, <em>The History of English in 10 Minutes</em></li>
+    </ul>
+  </div>
+</section>
+
 <div class="bar-nav">
   <span>English is a Thief</span>
   <span class="right">
-    <span><b id="cur">1</b> / <span id="tot">14</span> &nbsp;&nbsp; &larr; &rarr;</span>
+    <span><b id="cur">1</b> / <span id="tot">16</span> &nbsp;&nbsp; &larr; &rarr;</span>
     <button class="fsbtn" id="fs" title="fullscreen (F)">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
         <path d="M1 4V1h3M8 1h3v3M11 8v3H8M4 11H1V8"/>
