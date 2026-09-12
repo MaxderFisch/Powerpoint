@@ -17,7 +17,7 @@
     line-height:1.45; -webkit-font-smoothing:antialiased;
   }
   .slide{
-    display:none; min-height:100vh; padding:4vh 6vw 9vh;
+    display:none; min-height:100vh; padding:3.5vh 6vw 6vh;
     flex-direction:column; justify-content:center;
   }
   .slide.on{display:flex}
@@ -37,7 +37,7 @@
     font-size:12px;letter-spacing:.16em;text-transform:uppercase;
     color:var(--soft);margin-bottom:1.4em;
   }
-  .rule{width:70px;height:3px;background:var(--ink);margin:1.1em 0}
+  .rule{width:70px;height:3px;background:var(--ink);margin:.85em 0}
 
   /* title slide */
   .title h1{font-size:clamp(44px,9vw,120px);line-height:.98}
@@ -66,7 +66,7 @@
 
   /* cow/beef table */
   table{border-collapse:collapse;margin:1em 0;font-size:clamp(17px,2.2vw,30px)}
-  th,td{padding:.42em 1.1em;text-align:left;border-bottom:1px solid var(--line)}
+  th,td{padding:.36em 1.1em;text-align:left;border-bottom:1px solid var(--line)}
   th{font-size:clamp(12px,1.1vw,15px);letter-spacing:.1em;text-transform:uppercase;
      color:var(--soft);font-weight:400;border-bottom:2px solid var(--ink)}
   td.fr{font-weight:700}
@@ -118,6 +118,29 @@
   /* the closing line must stay on one line next to the picture */
   .haspic .huge{font-size:clamp(32px,5.2vw,70px)}
 
+
+  /* family tree of English */
+  svg.tree{width:100%;height:54vh;display:block;margin:.2em auto}
+
+  /* the same sentence through the centuries */
+  .eras{margin:.8em 0 1em}
+  .era{padding:.4em 0;border-bottom:1px solid var(--line)}
+  .era .lbl{
+    font-size:clamp(10px,1vw,13px);letter-spacing:.09em;text-transform:uppercase;
+    color:var(--soft);display:flex;gap:1.1em;margin-bottom:.12em;
+  }
+  .era .txt{font-family:"Iowan Old Style",Georgia,serif;
+    font-size:clamp(15px,2vw,27px);line-height:1.28}
+
+  /* latin, the two waves */
+  .waves{display:grid;grid-template-columns:1fr 1fr;gap:1.4em 2.8em;margin:.9em 0 1em}
+  @media(max-width:760px){.waves{grid-template-columns:1fr}}
+  .wave .when{
+    font-size:clamp(10px,1vw,13px);letter-spacing:.09em;text-transform:uppercase;
+    color:var(--soft);border-bottom:2px solid var(--ink);padding-bottom:.28em;margin-bottom:.45em;
+  }
+  .wave p{font-size:clamp(13px,1.45vw,19px);max-width:none;margin:0 0 .45em}
+  .wave .list{font-size:clamp(15px,1.9vw,25px);font-style:italic;line-height:1.55}
 
   .bar-nav .right{display:flex;align-items:center;gap:16px}
   .fsbtn{
@@ -206,6 +229,84 @@
       Numbers: Finkenstaedt &amp; Wolff, <em>Ordered Profusion</em> (1973), about 80,000 words.<br>
       But careful: the words we use <em>every day</em> &mdash; <em>the, is, man, water</em> &mdash; are still the old English ones.
       English borrowed the <em>big</em> vocabulary, not the basics.</p>
+  </div>
+</section>
+
+<!-- NEW: where english comes from -->
+<section class="slide figslide">
+  <div class="inner">
+    <p class="kicker">where english comes from</p>
+    <h2>So where does English come from?</h2>
+    <svg viewBox="0 0 1060 398" xmlns="http://www.w3.org/2000/svg" class="tree" role="img" aria-label="The family tree of English, from Proto-Indo-European down to Modern English">
+<path d="M 38.0 42.0 L 38.0 65.0 L 58.0 65.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
+<rect x="20.0" y="12.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="34.0" y="33.0" font-size="15" font-weight="400" fill="#23211e">Proto-Indo-European</text>
+<text x="332.0" y="33.0" font-size="13" fill="#8a827a">about 4500 BC</text>
+<path d="M 76.0 80.0 L 76.0 103.0 L 96.0 103.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
+<rect x="58.0" y="50.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="72.0" y="71.0" font-size="15" font-weight="400" fill="#23211e">Indo-European</text>
+<path d="M 114.0 118.0 L 114.0 141.0 L 134.0 141.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
+<rect x="96.0" y="88.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="110.0" y="109.0" font-size="15" font-weight="400" fill="#23211e">Germanic</text>
+<path d="M 152.0 156.0 L 152.0 179.0 L 172.0 179.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
+<rect x="134.0" y="126.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="148.0" y="147.0" font-size="15" font-weight="400" fill="#23211e">West Germanic</text>
+<path d="M 190.0 194.0 L 190.0 217.0 L 210.0 217.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
+<rect x="172.0" y="164.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="186.0" y="185.0" font-size="15" font-weight="400" fill="#23211e">North Sea Germanic</text>
+<text x="484.0" y="185.0" font-size="13" fill="#8a827a">also: Ingvaeonic</text>
+<path d="M 228.0 232.0 L 228.0 255.0 L 248.0 255.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
+<rect x="210.0" y="202.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="224.0" y="223.0" font-size="15" font-weight="400" fill="#23211e">Anglo-Frisian</text>
+<path d="M 266.0 270.0 L 266.0 293.0 L 286.0 293.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
+<rect x="248.0" y="240.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="2"/>
+<text x="262.0" y="261.0" font-size="15" font-weight="700" fill="#23211e">Old English</text>
+<text x="560.0" y="261.0" font-size="13" fill="#8a827a">450 – 1100</text>
+<path d="M 304.0 308.0 L 304.0 331.0 L 324.0 331.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
+<rect x="286.0" y="278.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="2"/>
+<text x="300.0" y="299.0" font-size="15" font-weight="700" fill="#23211e">Middle English</text>
+<text x="598.0" y="299.0" font-size="13" fill="#8a827a">1100 – 1500</text>
+<path d="M 342.0 346.0 L 342.0 369.0 L 362.0 369.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
+<rect x="324.0" y="316.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="2"/>
+<text x="338.0" y="337.0" font-size="15" font-weight="700" fill="#23211e">Early Modern English</text>
+<text x="636.0" y="337.0" font-size="13" fill="#8a827a">1500 – 1700</text>
+<rect x="362.0" y="354.0" width="300" height="30" rx="3" fill="#23211e" stroke="#23211e" stroke-width="2"/>
+<text x="376.0" y="375.0" font-size="15" font-weight="700" fill="#ffffff">Modern English</text>
+<text x="674.0" y="375.0" font-size="13" fill="#8a827a">today</text>
+<path d="M 812 240.0 L 823 240.0 L 823 384.0 L 812 384.0" fill="none" stroke="#23211e" stroke-width="1.5"/>
+<text x="834" y="308.0" font-size="15" font-weight="700" fill="#23211e">from here on</text>
+<text x="834" y="328.0" font-size="15" font-weight="700" fill="#23211e">it is English</text>
+</svg>
+    <p class="small">English was born Germanic &mdash; the same family as German and Dutch.
+      That family line is the <em>25%</em> from the slide before. Everything else was picked up along the way.</p>
+  </div>
+</section>
+
+<!-- NEW: how english changed over time -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">one sentence, one thousand years</p>
+    <h2>You can watch it change.</h2>
+    <div class="eras">
+      <div class="era">
+        <div class="lbl"><span>Old English</span><span>around 1000</span></div>
+        <div class="txt"><span class="mark">F&aelig;der</span> &#363;re, &thorn;&#363; &thorn;e eart on heofonum, s&#299; &thorn;&#299;n nama geh&#257;lgod</div>
+      </div>
+      <div class="era">
+        <div class="lbl"><span>Middle English</span><span>around 1390</span></div>
+        <div class="txt">Oure <span class="mark">fadir</span> that art in heuenes, halewid be thi name</div>
+      </div>
+      <div class="era">
+        <div class="lbl"><span>Early Modern English</span><span>1611</span></div>
+        <div class="txt">Our <span class="mark">Father</span> which art in heauen, hallowed be thy name</div>
+      </div>
+      <div class="era">
+        <div class="lbl"><span>Modern English</span><span>today</span></div>
+        <div class="txt">Our <span class="mark">Father</span> in heaven, hallowed be your name</div>
+      </div>
+    </div>
+    <p class="lead">Same sentence, same language.<br>
+      But <span class="mark">Old English needs a translation.</span></p>
   </div>
 </section>
 
@@ -312,10 +413,32 @@
   </div>
 </section>
 
+<!-- NEW: latin -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">theft no. 1 &middot; 600, and again 1500</p>
+    <h2>Latin came twice.</h2>
+    <div class="waves">
+      <div class="wave">
+        <div class="when">first &mdash; the monks, around 600</div>
+        <p>Christian missionaries came to England. They taught and wrote in Latin, and the words stayed.</p>
+        <div class="list">school &middot; street &middot; wine &middot; candle &middot; priest &middot; cheese &middot; kitchen</div>
+      </div>
+      <div class="wave">
+        <div class="when">second &mdash; the scientists, 1500&ndash;1700</div>
+        <p>New discoveries needed new words. Nobody invented them &mdash; they took Latin again.</p>
+        <div class="list">data &middot; formula &middot; species &middot; index &middot; focus &middot; maximum</div>
+      </div>
+    </div>
+    <p class="lead">Latin is <span class="mark">28% of English</span> &mdash; almost a third of the dictionary.<br>
+      We just stopped noticing.</p>
+  </div>
+</section>
+
 <!-- 5 -->
 <section class="slide haspic">
   <div class="inner" style="--picw:285px"><div>
-    <p class="kicker">theft no. 1 &middot; 800&ndash;1000</p>
+    <p class="kicker">theft no. 2 &middot; 800&ndash;1000</p>
     <h2>The Vikings came to rob.<br>Then they stayed.</h2>
     <p>They attacked England for 200 years, and then they lived there.
        The two languages mixed. English kept their words:</p>
@@ -336,7 +459,7 @@
 <!-- 6 -->
 <section class="slide haspic">
   <div class="inner" style="--picw:380px"><div>
-    <p class="kicker">theft no. 2 &middot; 1066</p>
+    <p class="kicker">theft no. 3 &middot; 1066</p>
     <h2>The French take over.</h2>
     <p>William the Conqueror wins. For the next 300 years the kings of England speak French.
        The farmers keep speaking English.</p>
@@ -357,7 +480,7 @@
 <!-- 7 -->
 <section class="slide haspic">
   <div class="inner" style="--picw:285px"><div>
-    <p class="kicker">theft no. 3 &middot; 1600&ndash;1900</p>
+    <p class="kicker">theft no. 4 &middot; 1600&ndash;1900</p>
     <h2>Then English went out<br>into the world.</h2>
     <p>British ships sailed everywhere. They came home with tea, cotton &mdash; and words.</p>
     <ul class="olist">
@@ -441,7 +564,7 @@
 <div class="bar-nav">
   <span>English is a Thief</span>
   <span class="right">
-    <span><b id="cur">1</b> / <span id="tot">11</span> &nbsp;&nbsp; &larr; &rarr;</span>
+    <span><b id="cur">1</b> / <span id="tot">14</span> &nbsp;&nbsp; &larr; &rarr;</span>
     <button class="fsbtn" id="fs" title="fullscreen (F)">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
         <path d="M1 4V1h3M8 1h3v3M11 8v3H8M4 11H1V8"/>
