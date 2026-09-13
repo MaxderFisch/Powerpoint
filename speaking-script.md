@@ -148,9 +148,12 @@ A thousand years ago it was the Vikings. Today it is Korea.
 
 And it works in the other direction too. Korea makes its own English.
 
-An American would not understand *hand phone*, or *eye shopping*.
+Some of these an American could actually guess. *Hand phone* is probably a
+mobile phone.
 
-But fifty million Koreans do.
+But *skinship*? Or shouting *fighting!* to cheer someone on? No chance.
+
+Fifty million Koreans know exactly what they mean.
 
 So — is this wrong English? Or is it just Korean English?
 
