@@ -1,24 +1,12 @@
 # Speaking script — English is a Thief
 
-16 slides, about 10 minutes.
-Write it in your own words — this is just so nobody has to start from zero.
-
-**Slides 1–4** → Max
-**Slides 5–16** → 허성윤 and 윤예원, split it however you want
-
-Lines in *(brackets)* are not spoken — they tell you what to do.
-
----
-
-## Slides 1–4 — Max · about 2:15
-
-### 1 — Title · 20 sec
+## 1 — Title
 
 Hello everyone. Our topic today is: English is a thief.
 
 We want to show you where English words really come from.
 
-### 2 — 170,000 words · 25 sec
+## 2 — 170,000 words
 
 English has about 170,000 words that people use today.
 
@@ -26,9 +14,7 @@ But here is our question: how many of them are actually English?
 
 Take a guess. Half? More?
 
-*(wait two or three seconds, then click)*
-
-### 3 — Only 1 word in 4 · 40 sec
+## 3 — Only 1 word in 4
 
 Only 25 percent. One word in four.
 
@@ -39,7 +25,7 @@ But one thing is important. The words we use every day — *the*, *is*, *man*,
 
 English borrowed the big vocabulary. Not the basics.
 
-### 4 — Where English comes from · 50 sec
+## 4 — Where English comes from
 
 So before we talk about the stealing: where does English itself come from?
 
@@ -52,40 +38,30 @@ only know it by comparing the languages that came out of it.
 From there it spread across Europe — and all the way to India. That is why
 English and Hindi are distant cousins.
 
-*(point down the staircase, don't read every step)*
-
 And only from Old English on do we call it English.
 
 This family line is exactly the 25 percent from the slide before. Everything
 else came from outside.
 
----
-
-## Slides 5–8 · about 2:50
-
-### 5 — One sentence, 1000 years · 45 sec
+## 5 — One sentence, 1000 years
 
 This is the same sentence in four periods of English.
 
-Watch the word for *father*.
-
-*Fæder. Fadir. Father. Father.*
+Watch the word for *father*. *Fæder. Fadir. Father. Father.*
 
 Old English is basically a foreign language. You cannot read it.
 
 Same sentence, same language — one thousand years apart.
 
-### 6 — The timeline · 40 sec
+## 6 — The timeline
 
 So this is who English stole from.
 
 The black box on the left is the original English. Everything else came later.
 
-*(point at two or three boxes — do not read them all)*
-
 Let me show you the most important ones.
 
-### 7 — Why did English borrow so much? · 35 sec
+## 7 — Why did English borrow so much?
 
 Every one of these had a reason.
 
@@ -96,7 +72,7 @@ Whenever English speakers met new people, English picked up their words.
 
 So let's look at how that happened — starting with Latin.
 
-### 8 — Latin · 50 sec
+## 8 — Latin
 
 Latin came twice.
 
@@ -109,11 +85,7 @@ Then again around 1500, when science exploded. Nobody invented words like
 Latin is 28 percent of English. Almost a third of the dictionary. We just
 stopped noticing.
 
----
-
-## Slides 9–11 · about 2:25
-
-### 9 — The Vikings · 50 sec
+## 9 — The Vikings
 
 The Vikings attacked England for 200 years. Then they stopped attacking, and
 just lived there.
@@ -122,12 +94,12 @@ The two languages mixed, and English kept their words.
 
 *Window* is a Viking word — *vindauga*. It means wind-eye. A hole for the wind.
 
-And then there is this. *(they · them · their)*
+And English also took *they*, *them* and *their*.
 
 These are basic words. Most languages never borrow words like this.
 English did.
 
-### 10 — The French · 50 sec
+## 10 — The French
 
 1066. William the Conqueror wins.
 
@@ -141,7 +113,7 @@ Same animal. Two words.
 The poor kept the animals, the rich ate them. And a thousand years later we
 still use both words.
 
-### 11 — Out into the world · 45 sec
+## 11 — Out into the world
 
 From 1600, British ships went everywhere.
 
@@ -153,23 +125,15 @@ massage.
 This is how English became a world language. Not because it is easy. Because
 of ships and power.
 
----
-
-## Slides 12–16 · about 2:40
-
-### 12 — Quiz · 60 sec
+## 12 — Quiz
 
 Now a quiz. Six words. Where do you think they come from?
-
-*(let the class shout, then click each one)*
 
 Ketchup is Chinese — it used to be a fish sauce.
 Chocolate is from Mexico.
 Sofa is Arabic. Robot is Czech. Tsunami is Japanese. And zero is Arabic too.
 
-*(if you are running out of time, do only ketchup and robot)*
-
-### 13 — Korean words · 40 sec
+## 13 — Korean words
 
 And English is still stealing. Right now. From us.
 
@@ -180,7 +144,7 @@ one day.
 
 A thousand years ago it was the Vikings. Today it is Korea.
 
-### 14 — Konglish · 40 sec
+## 14 — Konglish
 
 And it works in the other direction too. Korea makes its own English.
 
@@ -190,9 +154,7 @@ But fifty million Koreans do.
 
 So — is this wrong English? Or is it just Korean English?
 
-*(ask the class, wait a moment)*
-
-### 15 — Ending · 20 sec
+## 15 — Ending
 
 English is a thief.
 
@@ -200,15 +162,6 @@ And that is exactly why it belongs to everybody.
 
 Thank you.
 
-### 16 — Sources
+## 16 — Sources
 
-*(leave it on screen during the questions, say nothing)*
-
----
-
-## If we run out of time
-
-Cut the quiz on slide 12 down to two words, and go faster over slide 6 —
-the timeline explains itself.
-
-Do not cut slide 3 or slide 13. Those two are the point of the whole thing.
+Nothing to say here.

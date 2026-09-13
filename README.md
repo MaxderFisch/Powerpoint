@@ -29,7 +29,6 @@ B, C and D are for 허성윤 and 윤예원 to split as they like. 윤예원 aske
 two blocks to make up for the class she missed.
 
 **The full spoken text for every slide is in [speaking-script.md](speaking-script.md).**
-The short version below is just a reminder.
 
 ---
 
