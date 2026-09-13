@@ -16,17 +16,20 @@ also just click. On the quiz slide, click a word to show the answer.
 
 ## Who says what — 16 slides
 
-Each of us takes a block and does it in one go — no swapping after every
-slide. 윤예원 takes two blocks (B+C) to make up for the class she missed.
+Each of us takes a block and does it in one go — no swapping after every slide.
 
 | Block | Slides | What it is | Who |
 |---|---|---|---|
-| A | 1–4 | intro, the 25%, the family tree | |
-| B | 5–8 | how English changed, the timeline, why it borrowed, Latin | 윤예원 |
-| C | 9–11 | the Vikings, the French, the Empire | 윤예원 |
+| A | 1–4 | intro, the 25%, the family tree | Max |
+| B | 5–8 | how English changed, the timeline, why it borrowed, Latin | |
+| C | 9–11 | the Vikings, the French, the Empire | |
 | D | 12–16 | the quiz, the Korean words, Konglish, the ending | |
 
-A and D are still open — 허성윤 and Max take one each.
+B, C and D are for 허성윤 and 윤예원 to split as they like. 윤예원 asked for
+two blocks to make up for the class she missed.
+
+**The full spoken text for every slide is in [speaking-script.md](speaking-script.md).**
+The short version below is just a reminder.
 
 ---
 
