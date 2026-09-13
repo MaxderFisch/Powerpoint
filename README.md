@@ -16,19 +16,17 @@ also just click. On the quiz slide, click a word to show the answer.
 
 ## Who says what — 16 slides
 
-Each of us takes a block and does it in one go — no swapping after every slide.
+Agreed in Discord on 13 Sept. Each of us takes a block and does it in one go.
 
-| Block | Slides | What it is | Who |
-|---|---|---|---|
-| A | 1–4 | intro, the 25%, the family tree | Max |
-| B | 5–8 | how English changed, the timeline, why it borrowed, Latin | |
-| C | 9–11 | the Vikings, the French, the Empire | |
-| D | 12–16 | the quiz, the Korean words, Konglish, the ending | |
+| Block | Slides | What it is | Who | Time |
+|---|---|---|---|---|
+| A | 1–5 | intro, the 25%, the family tree, how English changed | Max | ~3:00 |
+| B | 6–11 | who English stole from and why: Latin, Vikings, French, the Empire | 윤예원 | ~4:30 |
+| C | 12–16 | the quiz, the Korean words, Konglish, the ending | 허성윤 | ~2:40 |
 
-B, C and D are for 허성윤 and 윤예원 to split as they like. 윤예원 asked for
-two blocks to make up for the class she missed.
+B is the biggest block because 윤예원 asked for more after missing a class.
 
-**The full spoken text for every slide is in [speaking-script.md](speaking-script.md).**
+**The spoken text for every slide is in [speaking-script.md](speaking-script.md).**
 
 ---
 
