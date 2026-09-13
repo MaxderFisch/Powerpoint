@@ -10,7 +10,7 @@ school computer makes trouble — same slides, one per page.
 **Controls:** `→` next · `←` back · `F` fullscreen · button bottom right · you can
 also just click. On the quiz slide, click a word to show the answer.
 
-**Before Monday:** put our names on slide 1.
+**Presenting:** 허성윤 · 윤예원 · Max Aulinger
 
 ---
 
