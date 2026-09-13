@@ -14,23 +14,19 @@ also just click. On the quiz slide, click a word to show the answer.
 
 ---
 
-## Who says what — 3 of us, 16 slides
+## Who says what — 16 slides
 
-Each of us takes one block and does it in one go — no swapping after
-every slide.
+Each of us takes a block and does it in one go — no swapping after every
+slide. 윤예원 takes two blocks (B+C) to make up for the class she missed.
 
-| Block | Slides | What it is | Time |
+| Block | Slides | What it is | Who |
 |---|---|---|---|
-| A | 1–5 | where English comes from: the 25%, the family tree, how it changed | ~3:00 |
-| B | 6–11 | who English stole from and why: Latin, Vikings, French, the Empire | ~3:30 |
-| C | 12–16 | today: the quiz, the Korean words, Konglish, the ending | ~3:00 |
+| A | 1–4 | intro, the 25%, the family tree | |
+| B | 5–8 | how English changed, the timeline, why it borrowed, Latin | 윤예원 |
+| C | 9–11 | the Vikings, the French, the Empire | 윤예원 |
+| D | 12–16 | the quiz, the Korean words, Konglish, the ending | |
 
-| | |
-|---|---|
-| A | |
-| B | |
-| C | |
-
+A and D are still open — 허성윤 and Max take one each.
 
 ---
 
