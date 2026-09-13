@@ -14,16 +14,23 @@ also just click. On the quiz slide, click a word to show the answer.
 
 ---
 
-## Who says what — 16 slides
+## Who says what — 3 of us, 16 slides
 
-| Slides | Who | Time |
-|---|---|---|
-| 1–4 — intro, the 25%, where English comes from | person 1 | ~2:30 |
-| 5–8 — how it changed, who it stole from, why, Latin | person 2 | ~2:45 |
-| 9–11 — Vikings, French, the Empire | person 3 | ~2:15 |
-| 12–16 — quiz, Korean, Konglish, ending | person 4 | ~2:30 |
+Each of us takes one block and does it in one go — no swapping after
+every slide.
 
-*If we are only 3:* 1–5 / 6–11 / 12–16.
+| Block | Slides | What it is | Time |
+|---|---|---|---|
+| A | 1–5 | where English comes from: the 25%, the family tree, how it changed | ~3:00 |
+| B | 6–11 | who English stole from and why: Latin, Vikings, French, the Empire | ~3:30 |
+| C | 12–16 | today: the quiz, the Korean words, Konglish, the ending | ~3:00 |
+
+| | |
+|---|---|
+| A | |
+| B | |
+| C | |
+
 
 ---
 
