@@ -151,9 +151,12 @@ And it works in the other direction too. Korea makes its own English.
 Some of these an American could actually guess. *Hand phone* is probably a
 mobile phone.
 
-But *skinship*? Or shouting *fighting!* to cheer someone on? No chance.
+*Fighting!* is different. They know the word — they just would not know why
+you are shouting it at them.
 
-Fifty million Koreans know exactly what they mean.
+And most Americans have never heard *skinship* at all.
+
+But everyone in this room knows all six.
 
 So — is this wrong English? Or is it just Korean English?
 
