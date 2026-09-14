@@ -16,8 +16,9 @@ Take a guess. Half? More?
 
 ## 3 — Only 1 word in 4
 
-*(the names above the bar are hidden — press the arrow key to reveal them one
-by one while the class guesses)*
+*(the names above the bar are hidden. click a block to uncover its name — in
+any order, whichever one the class shouts out. number keys 1 to 5 work too,
+and A uncovers everything at once)*
 
 Before I show you: which languages do you think English stole from?
 

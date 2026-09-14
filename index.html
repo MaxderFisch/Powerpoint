@@ -156,23 +156,39 @@
     font-size:clamp(13px,1.4vw,19px);line-height:1.4}
   .refs .what{font-weight:700}
 
-  /* each slide eases in when you arrive on it.
-     the drawing is left out on purpose: an animated ancestor would break
-     the multiply blend and put a white box behind it. */
-  @keyframes slideIn{
-    from{opacity:0;transform:translateY(20px)}
+  /* the pieces of a slide come in one after another, not all at once.
+     the drawing never animates: an animated ancestor makes its own stacking
+     context, which would break the multiply blend and put a white box
+     behind it. */
+  @keyframes riseIn{
+    from{opacity:0;transform:translateY(24px)}
     to{opacity:1;transform:none}
   }
-  .slide.on .inner > *:not(.picwrap){
-    animation:slideIn .42s cubic-bezier(.22,.61,.36,1) both;
+  .slide.on:not(.haspic) .inner > *,
+  .slide.on.haspic .inner > div:first-child > *{
+    animation:riseIn .52s cubic-bezier(.21,.68,.32,1) both;
   }
+  .slide.on:not(.haspic) .inner > *:nth-child(1),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(1){animation-delay:0s}
+  .slide.on:not(.haspic) .inner > *:nth-child(2),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(2){animation-delay:.07s}
+  .slide.on:not(.haspic) .inner > *:nth-child(3),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(3){animation-delay:.14s}
+  .slide.on:not(.haspic) .inner > *:nth-child(4),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(4){animation-delay:.21s}
+  .slide.on:not(.haspic) .inner > *:nth-child(5),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(5){animation-delay:.28s}
+  .slide.on:not(.haspic) .inner > *:nth-child(n+6),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(n+6){animation-delay:.34s}
 
-  /* things revealed one at a time with the arrow key */
-  .rv{opacity:0;transition:opacity .4s ease}
+  /* labels you uncover yourself, in any order */
+  .rv{opacity:0;transition:opacity .35s ease}
   .rv.shown{opacity:1}
+  .seg{cursor:pointer}
+  .seg:hover{stroke-width:3.5}
 
   @media (prefers-reduced-motion:reduce){
-    .slide.on .inner > *:not(.picwrap){animation:none}
+    .slide.on .inner *{animation:none !important}
     .rv{transition:none}
   }
 
@@ -200,8 +216,9 @@
     .figslide{padding-left:.35in;padding-right:.35in}
     .figwrap{overflow:visible}
     .haspic .pic{mix-blend-mode:multiply}
-    .slide.on .inner > *:not(.picwrap){animation:none !important}
+    *{animation:none !important}
     .rv{opacity:1 !important}
+    .seg{cursor:auto}
     .card{break-inside:avoid}
     th,td{padding-top:.34em;padding-bottom:.34em}
   }
@@ -241,19 +258,19 @@
     <p class="kicker">the answer</p>
     <h2>Only 1 word in 4.</h2>
     <svg viewBox="0 0 1000 190" xmlns="http://www.w3.org/2000/svg" class="bar" role="img" aria-label="Only 25 percent of English words are originally English">
-<rect x="0.0" y="52" width="250.0" height="70" fill="#23211e" stroke="#23211e" stroke-width="1.5"/>
+<rect class="seg" data-step="1" x="0.0" y="52" width="250.0" height="70" fill="#23211e" stroke="#23211e" stroke-width="1.5"/>
 <g class="rv" data-step="1"><text x="125.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Germanic</text></g>
 <text x="125.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">25%</text>
-<rect x="250.0" y="52" width="290.0" height="70" fill="#b9a888" stroke="#23211e" stroke-width="1.5"/>
+<rect class="seg" data-step="2" x="250.0" y="52" width="290.0" height="70" fill="#b9a888" stroke="#23211e" stroke-width="1.5"/>
 <g class="rv" data-step="2"><text x="395.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">French</text></g>
 <text x="395.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">29%</text>
-<rect x="540.0" y="52" width="280.0" height="70" fill="#d2c5ac" stroke="#23211e" stroke-width="1.5"/>
+<rect class="seg" data-step="3" x="540.0" y="52" width="280.0" height="70" fill="#d2c5ac" stroke="#23211e" stroke-width="1.5"/>
 <g class="rv" data-step="3"><text x="680.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Latin</text></g>
 <text x="680.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">28%</text>
-<rect x="820.0" y="52" width="50.0" height="70" fill="#e6dcc9" stroke="#23211e" stroke-width="1.5"/>
+<rect class="seg" data-step="4" x="820.0" y="52" width="50.0" height="70" fill="#e6dcc9" stroke="#23211e" stroke-width="1.5"/>
 <g class="rv" data-step="4"><text x="845.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Greek</text></g>
 <text x="845.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">5%</text>
-<rect x="870.0" y="52" width="130.0" height="70" fill="#f2ede2" stroke="#23211e" stroke-width="1.5"/>
+<rect class="seg" data-step="5" x="870.0" y="52" width="130.0" height="70" fill="#f2ede2" stroke="#23211e" stroke-width="1.5"/>
 <g class="rv" data-step="5"><text x="935.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Other</text></g>
 <text x="935.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">13%</text>
 <path d="M 1.0 136 L 1.0 147 L 249.0 147 L 249.0 136" fill="none" stroke="#23211e" stroke-width="1.5"/>
@@ -666,24 +683,22 @@
     location.hash = i + 1;
   }
 
-  function reveals(){
-    return Array.prototype.slice.call(slides[i].querySelectorAll('.rv'))
-      .sort(function(a,b){ return a.dataset.step - b.dataset.step; });
+  // uncover one label, in whatever order the class shouts them out
+  function toggleStep(step){
+    var el = slides[i].querySelector('.rv[data-step="' + step + '"]');
+    if (el) el.classList.toggle('shown');
   }
-  function next(){
-    var hidden = reveals().filter(function(e){ return !e.classList.contains('shown'); });
-    if (hidden.length) { hidden[0].classList.add('shown'); return; }
-    show(i + 1);
+  function revealAll(){
+    slides[i].querySelectorAll('.rv').forEach(function(e){ e.classList.add('shown'); });
   }
-  function prev(){
-    var shown = reveals().filter(function(e){ return e.classList.contains('shown'); });
-    if (shown.length) { shown[shown.length - 1].classList.remove('shown'); return; }
-    show(i - 1);
-  }
+  function next(){ show(i + 1); }
+  function prev(){ show(i - 1); }
 
   document.addEventListener('keydown', function(e){
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { next(); e.preventDefault(); }
     if (e.key === 'ArrowLeft'  || e.key === 'PageUp')                    { prev(); e.preventDefault(); }
+    if (e.key >= '1' && e.key <= '9') { toggleStep(e.key); e.preventDefault(); }
+    if (e.key === 'a' || e.key === 'A') { revealAll(); e.preventDefault(); }
     if (e.key === 'Home') show(0);
     if (e.key === 'End')  show(slides.length - 1);
     if (e.key === 'f' || e.key === 'F') {
@@ -694,6 +709,8 @@
 
   // click the right side = next, left side = back (but not on a quiz card)
   document.addEventListener('click', function(e){
+    var seg = e.target.closest('.seg');
+    if (seg) { toggleStep(seg.dataset.step); return; }
     if (e.target.closest('.card') || e.target.closest('.fsbtn')) return;
     if (e.clientX > window.innerWidth * 0.28) next(); else prev();
   });
