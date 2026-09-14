@@ -16,7 +16,14 @@ Take a guess. Half? More?
 
 ## 3 — Only 1 word in 4
 
-Only 25 percent. One word in four.
+*(the names above the bar are hidden — press the arrow key to reveal them one
+by one while the class guesses)*
+
+Before I show you: which languages do you think English stole from?
+
+*(let them shout, then reveal)*
+
+This first block is the original English — only 25 percent. One word in four.
 
 Three out of four English words were taken from another language.
 
