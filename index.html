@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>English is a Thief</title>
+<title>When the Machine Doesn’t Understand You</title>
 <style>
   :root{
     --ink:#23211e; --soft:#7b736b; --paper:#faf8f4; --line:#ddd6cc;
@@ -41,6 +41,8 @@
 
   /* title slide */
   .title h1{font-size:clamp(44px,9vw,120px);line-height:.98}
+  /* the title shares its width with the drawing, so it needs to be smaller */
+  .title.haspic h1{font-size:clamp(28px,4.4vw,56px)}
   .title .sub{font-size:clamp(18px,2.4vw,32px);color:var(--soft);margin-top:.6em}
   .title .by{margin-top:2.4em;font-size:clamp(14px,1.4vw,19px);color:var(--soft)}
   .hint{margin-top:1.2em;font-size:13px;color:var(--soft)}
@@ -192,6 +194,44 @@
     .rv{transition:none}
   }
 
+
+  /* the concrete example: what I say, what the phone makes of it */
+  .demo{border-left:3px solid var(--ink);padding:.2em 0 .2em 1.1em;margin:1em 0 1.1em;max-width:900px}
+  .demo .row{display:grid;grid-template-columns:7.2em 1fr;gap:.9em;align-items:baseline;padding:.3em 0}
+  @media screen and (max-width:700px){.demo .row{grid-template-columns:1fr}}
+  .demo .who{
+    font-size:clamp(10px,1vw,13px);letter-spacing:.09em;text-transform:uppercase;color:var(--soft);
+  }
+  .demo .said{font-size:clamp(18px,2.4vw,32px);font-weight:700;line-height:1.25}
+  .demo .said.wrong{font-weight:400;color:var(--soft);text-decoration:line-through;
+    text-decoration-thickness:1px}
+  .demo .mean{font-size:clamp(13px,1.4vw,18px);color:var(--soft);margin-top:.1em}
+
+  /* the essay outline */
+  .plan{margin:.8em 0 1em;max-width:1000px}
+  .plan li{
+    list-style:none;display:grid;grid-template-columns:2.2em 1fr;gap:.8em;
+    padding:.36em 0;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  @media screen and (max-width:700px){.plan li{grid-template-columns:1.8em 1fr}}
+  .plan .no{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:clamp(11px,1.1vw,14px);color:var(--soft)}
+  .plan .what{font-size:clamp(15px,1.75vw,23px)}
+  .plan .what b{font-weight:700}
+
+  svg.wer{width:100%;max-width:1000px;height:auto;display:block;margin:1em 0 .4em}
+  svg.chain{width:100%;min-width:900px;height:auto;display:block}
+
+  /* the essay itself, set small like a printed page */
+  .essay{
+    column-count:2; column-gap:2.6em;
+    font-size:clamp(10px,1.08vw,14px); line-height:1.52;
+    max-width:1150px; margin:.7em 0 0;
+  }
+  @media screen and (max-width:820px){.essay{column-count:1}}
+  .essay p{max-width:none; font-size:inherit; margin:0 0 .85em}
+  .essay p:last-child{margin-bottom:0}
+  .essay q{quotes:"\201C" "\201D"}
+
   .bar-nav .right{display:flex;align-items:center;gap:16px}
   .fsbtn{
     display:inline-flex;align-items:center;gap:6px;
@@ -231,430 +271,171 @@
 <!-- 1 -->
 <section class="slide haspic title">
   <div class="inner"><div>
-    <h1>English is<br>a Thief</h1>
-    <p class="sub">Where do English words really come from?</p>
-    <p class="by">Global English &middot; group presentation &middot; 9/14<br>
-       허성윤 · 윤예원 · Max Aulinger</p>
+    <h1>When the machine<br>doesn&rsquo;t understand you</h1>
+    <p class="sub">How AI is changing the way we speak English</p>
+    <p class="by">Global English &middot; essay presentation<br>
+       Max Aulinger</p>
     <p class="hint">press &rarr; to start &middot; F = fullscreen</p>
   </div>
-    <div class="picwrap"><img class="pic" style="width:430px" src="img/01-thief.jpg" alt="a cartoon burglar running off with a sack of letters"></div>
+    <div class="picwrap"><img class="pic" style="width:420px" src="img/01-voice.webp" alt="a person speaking into a phone that stares blankly past them"></div>
   </div>
 </section>
 
 <!-- 2 -->
 <section class="slide haspic">
   <div class="inner"><div>
-    <p class="kicker">the question</p>
-    <h2>English has about<br>170,000 words.</h2>
-    <p class="lead">But how many of them are <em>really</em> English?</p>
+    <p class="kicker">how I got to the topic</p>
+    <h2>It started with my own voice.</h2>
+    <p class="lead">I am German, but I speak a strong Bavarian dialect.
+      When I use voice-to-text, my phone often writes nonsense. For example:</p>
+    <div class="demo">
+      <div class="row">
+        <span class="who">I say</span>
+        <span>
+          <span class="said">&ldquo;I hob koa Zeit&rdquo;</span>
+          <span class="mean">Bavarian for &ldquo;I have no time&rdquo;</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="who">phone writes</span>
+        <span class="said wrong">&ldquo;I hope Korea&rdquo;</span>
+      </div>
+    </div>
+    <p class="lead">The software is not broken.
+      I just <span class="mark">don&rsquo;t sound like the people it learned from.</span></p>
+    <p class="lead">So I asked myself: if this happens to me in German &mdash;
+      what happens to English speakers with an accent?</p>
   </div>
-    <div class="picwrap"><img class="pic" style="width:355px" src="img/02-dictionary.jpg" alt="a tiny person looking up at a huge stack of dictionaries"></div>
+    <div class="picwrap"><img class="pic" style="width:390px" src="img/02-voices.webp" alt="six people speaking, only one voice reaches the phone"></div>
   </div>
 </section>
 
 <!-- 3 -->
 <section class="slide">
   <div class="inner">
-    <p class="kicker">the answer</p>
-    <h2>Only 1 word in 4.</h2>
-    <svg viewBox="0 0 1000 190" xmlns="http://www.w3.org/2000/svg" class="bar" role="img" aria-label="Only 25 percent of English words are originally English">
-<rect class="seg" data-step="1" x="0.0" y="52" width="250.0" height="70" fill="#23211e" stroke="#23211e" stroke-width="1.5"/>
-<g class="rv" data-step="1"><text x="125.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Germanic</text></g>
-<text x="125.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">25%</text>
-<rect class="seg" data-step="2" x="250.0" y="52" width="290.0" height="70" fill="#b9a888" stroke="#23211e" stroke-width="1.5"/>
-<g class="rv" data-step="2"><text x="395.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">French</text></g>
-<text x="395.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">29%</text>
-<rect class="seg" data-step="3" x="540.0" y="52" width="280.0" height="70" fill="#d2c5ac" stroke="#23211e" stroke-width="1.5"/>
-<g class="rv" data-step="3"><text x="680.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Latin</text></g>
-<text x="680.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">28%</text>
-<rect class="seg" data-step="4" x="820.0" y="52" width="50.0" height="70" fill="#e6dcc9" stroke="#23211e" stroke-width="1.5"/>
-<g class="rv" data-step="4"><text x="845.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Greek</text></g>
-<text x="845.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">5%</text>
-<rect class="seg" data-step="5" x="870.0" y="52" width="130.0" height="70" fill="#f2ede2" stroke="#23211e" stroke-width="1.5"/>
-<g class="rv" data-step="5"><text x="935.0" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#23211e">Other</text></g>
-<text x="935.0" y="94" text-anchor="middle" font-size="19" font-weight="700" fill="#23211e">13%</text>
-<path d="M 1.0 136 L 1.0 147 L 249.0 147 L 249.0 136" fill="none" stroke="#23211e" stroke-width="1.5"/>
-<text x="125.0" y="170" text-anchor="middle" font-size="16" font-weight="700" fill="#23211e">really English</text>
-<path d="M 251.0 136 L 251.0 147 L 999.0 147 L 999.0 136" fill="none" stroke="#23211e" stroke-width="1.5"/>
-<text x="625.0" y="170" text-anchor="middle" font-size="16" font-weight="700" fill="#23211e">borrowed — 75%</text>
+    <p class="kicker">the evidence</p>
+    <h2>It is not just a feeling.</h2>
+    <svg viewBox="0 0 1000 232" xmlns="http://www.w3.org/2000/svg" class="wer" role="img" aria-label="Speech recognition makes 35 percent errors for Black speakers and 19 percent for white speakers">
+<text x="232" y="69" text-anchor="end" font-size="19" font-weight="700" fill="#23211e">White speakers</text>
+<rect x="250" y="34" width="304" height="58" fill="#d2c5ac" stroke="#23211e" stroke-width="1.5"/>
+<text x="538" y="71" text-anchor="end" font-size="23" font-weight="700" fill="#23211e">19%</text>
+<text x="232" y="153" text-anchor="end" font-size="19" font-weight="700" fill="#23211e">Black speakers</text>
+<rect x="250" y="118" width="560" height="58" fill="#23211e" stroke="#23211e" stroke-width="1.5"/>
+<text x="794" y="155" text-anchor="end" font-size="23" font-weight="700" fill="#ffffff">35%</text>
+<path d="M 832 63 L 844 63 L 844 147 L 832 147" fill="none" stroke="#23211e" stroke-width="1.5"/>
+<text x="856" y="106" font-size="17" font-weight="700" fill="#23211e">almost</text>
+<text x="856" y="126" font-size="17" font-weight="700" fill="#23211e">twice as many</text>
+<text x="250" y="214" font-size="15" fill="#8a827a">word error rate &mdash; how often the software writes down the wrong word</text>
 </svg>
-    <p class="small">Where the words in a big English dictionary come from.
-      Numbers: Finkenstaedt &amp; Wolff, <em>Ordered Profusion</em> (1973), about 80,000 words.<br>
-      But careful: the words we use <em>every day</em> &mdash; <em>the, is, man, water</em> &mdash; are still the old English ones.
-      English borrowed the <em>big</em> vocabulary, not the basics.</p>
-  </div>
-</section>
-
-<!-- NEW: where english comes from -->
-<section class="slide figslide">
-  <div class="inner">
-    <p class="kicker">where english comes from</p>
-    <h2>So where does English come from?</h2>
-    <p class="lead">It starts <span class="mark">north of the Black Sea</span>, about 6,500 years ago.</p>
-    <svg viewBox="0 0 1060 398" xmlns="http://www.w3.org/2000/svg" class="tree" role="img" aria-label="The family tree of English, from Proto-Indo-European down to Modern English">
-<path d="M 38.0 42.0 L 38.0 65.0 L 58.0 65.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
-<rect x="20.0" y="12.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="34.0" y="33.0" font-size="15" font-weight="400" fill="#23211e">Proto-Indo-European</text>
-<text x="332.0" y="33.0" font-size="13" fill="#8a827a">around 4500 BC &#183; north of the Black Sea</text>
-<path d="M 76.0 80.0 L 76.0 103.0 L 96.0 103.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
-<rect x="58.0" y="50.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="72.0" y="71.0" font-size="15" font-weight="400" fill="#23211e">Indo-European</text>
-<path d="M 114.0 118.0 L 114.0 141.0 L 134.0 141.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
-<rect x="96.0" y="88.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="110.0" y="109.0" font-size="15" font-weight="400" fill="#23211e">Germanic</text>
-<path d="M 152.0 156.0 L 152.0 179.0 L 172.0 179.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
-<rect x="134.0" y="126.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="148.0" y="147.0" font-size="15" font-weight="400" fill="#23211e">West Germanic</text>
-<path d="M 190.0 194.0 L 190.0 217.0 L 210.0 217.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
-<rect x="172.0" y="164.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="186.0" y="185.0" font-size="15" font-weight="400" fill="#23211e">North Sea Germanic</text>
-<text x="484.0" y="185.0" font-size="13" fill="#8a827a">also: Ingvaeonic</text>
-<path d="M 228.0 232.0 L 228.0 255.0 L 248.0 255.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
-<rect x="210.0" y="202.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="224.0" y="223.0" font-size="15" font-weight="400" fill="#23211e">Anglo-Frisian</text>
-<path d="M 266.0 270.0 L 266.0 293.0 L 286.0 293.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
-<rect x="248.0" y="240.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="2"/>
-<text x="262.0" y="261.0" font-size="15" font-weight="700" fill="#23211e">Old English</text>
-<text x="560.0" y="261.0" font-size="13" fill="#8a827a">450 – 1100</text>
-<path d="M 304.0 308.0 L 304.0 331.0 L 324.0 331.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
-<rect x="286.0" y="278.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="2"/>
-<text x="300.0" y="299.0" font-size="15" font-weight="700" fill="#23211e">Middle English</text>
-<text x="598.0" y="299.0" font-size="13" fill="#8a827a">1100 – 1500</text>
-<path d="M 342.0 346.0 L 342.0 369.0 L 362.0 369.0" fill="none" stroke="#23211e" stroke-width="1.2"/>
-<rect x="324.0" y="316.0" width="300" height="30" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="2"/>
-<text x="338.0" y="337.0" font-size="15" font-weight="700" fill="#23211e">Early Modern English</text>
-<text x="636.0" y="337.0" font-size="13" fill="#8a827a">1500 – 1700</text>
-<rect x="362.0" y="354.0" width="300" height="30" rx="3" fill="#23211e" stroke="#23211e" stroke-width="2"/>
-<text x="376.0" y="375.0" font-size="15" font-weight="700" fill="#ffffff">Modern English</text>
-<text x="674.0" y="375.0" font-size="13" fill="#8a827a">today</text>
-<path d="M 812 240.0 L 823 240.0 L 823 384.0 L 812 384.0" fill="none" stroke="#23211e" stroke-width="1.5"/>
-<text x="834" y="308.0" font-size="15" font-weight="700" fill="#23211e">from here on</text>
-<text x="834" y="328.0" font-size="15" font-weight="700" fill="#23211e">it is English</text>
-</svg>
-    <p class="small">From there it spread across Europe and India &mdash; that is why English and Hindi
-      are distant cousins. English itself was born Germanic: that line is the <em>25%</em> from the slide before.</p>
-  </div>
-</section>
-
-<!-- NEW: how english changed over time -->
-<section class="slide">
-  <div class="inner">
-    <p class="kicker">one sentence, one thousand years</p>
-    <h2>You can watch it change.</h2>
-    <div class="eras">
-      <div class="era">
-        <div class="lbl"><span>Old English</span><span>around 1000</span></div>
-        <div class="txt"><span class="mark">F&aelig;der</span> &#363;re, &thorn;&#363; &thorn;e eart on heofonum, s&#299; &thorn;&#299;n nama geh&#257;lgod</div>
-      </div>
-      <div class="era">
-        <div class="lbl"><span>Middle English</span><span>around 1390</span></div>
-        <div class="txt">Oure <span class="mark">fadir</span> that art in heuenes, halewid be thi name</div>
-      </div>
-      <div class="era">
-        <div class="lbl"><span>Early Modern English</span><span>1611</span></div>
-        <div class="txt">Our <span class="mark">Father</span> which art in heauen, hallowed be thy name</div>
-      </div>
-      <div class="era">
-        <div class="lbl"><span>Modern English</span><span>today</span></div>
-        <div class="txt">Our <span class="mark">Father</span> in heaven, hallowed be your name</div>
-      </div>
-    </div>
-    <p class="lead">Same sentence, same language.<br>
-      But <span class="mark">Old English needs a translation.</span></p>
+    <p class="small">Stanford University, published in <em>PNAS</em> (2020). The researchers tested five speech
+      recognition systems &mdash; Amazon, Apple, Google, IBM and Microsoft &mdash; with the same sentences.
+      Non-native speakers run into the same wall.</p>
   </div>
 </section>
 
 <!-- 4 -->
 <section class="slide figslide">
   <div class="inner">
-    <p class="kicker">the crime scene</p>
-    <h2>So who did English steal from?</h2>
-    <div class="figwrap"><svg viewBox="0 0 1280 420" xmlns="http://www.w3.org/2000/svg" class="tl" role="img" aria-label="Timeline: which languages English took words from">
-<line x1="14" y1="210" x2="1266" y2="210" stroke="#23211e" stroke-width="2"/>
-<line x1="80.0" y1="164.0" x2="80.0" y2="204.0" stroke="#23211e" stroke-width="1"/>
-<circle cx="80.0" cy="210" r="7" fill="#23211e"/>
-<rect x="5.0" y="28.0" width="150" height="136" rx="3" fill="#23211e" stroke="#23211e" stroke-width="2"/>
-<text x="80.0" y="55.0" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">Anglo-Saxon</text>
-<text x="80.0" y="74.0" text-anchor="middle" font-size="12" fill="#a9a29a" letter-spacing="0.5">450</text>
-<line x1="51.0" y1="85.0" x2="109.0" y2="85.0" stroke="#5a544e" stroke-width="1"/>
-<text x="80.0" y="108.0" text-anchor="middle" font-size="16" font-style="italic" fill="#ffffff">house</text>
-<text x="80.0" y="129.0" text-anchor="middle" font-size="16" font-style="italic" fill="#ffffff">water</text>
-<text x="80.0" y="150.0" text-anchor="middle" font-size="16" font-style="italic" fill="#ffffff">eat</text>
-<line x1="204.4" y1="216.0" x2="204.4" y2="256.0" stroke="#23211e" stroke-width="1"/>
-<circle cx="204.4" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
-<rect x="129.4" y="256.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="204.4" y="283.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Latin</text>
-<text x="204.4" y="302.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">600</text>
-<line x1="175.4" y1="313.0" x2="233.4" y2="313.0" stroke="#ddd6cc" stroke-width="1"/>
-<text x="204.4" y="336.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">school</text>
-<text x="204.4" y="357.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">street</text>
-<text x="204.4" y="378.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">wine</text>
-<line x1="328.9" y1="164.0" x2="328.9" y2="204.0" stroke="#23211e" stroke-width="1"/>
-<circle cx="328.9" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
-<rect x="253.9" y="28.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="328.9" y="55.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Old Norse</text>
-<text x="328.9" y="74.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">800</text>
-<line x1="299.9" y1="85.0" x2="357.9" y2="85.0" stroke="#ddd6cc" stroke-width="1"/>
-<text x="328.9" y="108.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">sky</text>
-<text x="328.9" y="129.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">egg</text>
-<text x="328.9" y="150.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">they</text>
-<line x1="453.3" y1="216.0" x2="453.3" y2="256.0" stroke="#23211e" stroke-width="1"/>
-<circle cx="453.3" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
-<rect x="378.3" y="256.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="453.3" y="283.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">French</text>
-<text x="453.3" y="302.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1066</text>
-<line x1="424.3" y1="313.0" x2="482.3" y2="313.0" stroke="#ddd6cc" stroke-width="1"/>
-<text x="453.3" y="336.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">beef</text>
-<text x="453.3" y="357.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">money</text>
-<text x="453.3" y="378.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">art</text>
-<line x1="577.8" y1="164.0" x2="577.8" y2="204.0" stroke="#23211e" stroke-width="1"/>
-<circle cx="577.8" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
-<rect x="502.8" y="28.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="577.8" y="55.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Greek</text>
-<text x="577.8" y="74.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1500</text>
-<line x1="548.8" y1="85.0" x2="606.8" y2="85.0" stroke="#ddd6cc" stroke-width="1"/>
-<text x="577.8" y="108.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">drama</text>
-<text x="577.8" y="129.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">atom</text>
-<text x="577.8" y="150.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">idea</text>
-<line x1="702.2" y1="216.0" x2="702.2" y2="256.0" stroke="#23211e" stroke-width="1"/>
-<circle cx="702.2" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
-<rect x="627.2" y="256.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="702.2" y="283.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Arabic</text>
-<text x="702.2" y="302.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1600</text>
-<line x1="673.2" y1="313.0" x2="731.2" y2="313.0" stroke="#ddd6cc" stroke-width="1"/>
-<text x="702.2" y="336.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">coffee</text>
-<text x="702.2" y="357.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">sugar</text>
-<text x="702.2" y="378.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">zero</text>
-<line x1="826.7" y1="164.0" x2="826.7" y2="204.0" stroke="#23211e" stroke-width="1"/>
-<circle cx="826.7" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
-<rect x="751.7" y="28.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="826.7" y="55.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Italian</text>
-<text x="826.7" y="74.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1650</text>
-<line x1="797.7" y1="85.0" x2="855.7" y2="85.0" stroke="#ddd6cc" stroke-width="1"/>
-<text x="826.7" y="108.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">piano</text>
-<text x="826.7" y="129.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">pizza</text>
-<text x="826.7" y="150.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">balcony</text>
-<line x1="951.1" y1="216.0" x2="951.1" y2="256.0" stroke="#23211e" stroke-width="1"/>
-<circle cx="951.1" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
-<rect x="876.1" y="256.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="951.1" y="283.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Hindi</text>
-<text x="951.1" y="302.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1800</text>
-<line x1="922.1" y1="313.0" x2="980.1" y2="313.0" stroke="#ddd6cc" stroke-width="1"/>
-<text x="951.1" y="336.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">shampoo</text>
-<text x="951.1" y="357.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">jungle</text>
-<text x="951.1" y="378.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">pyjamas</text>
-<line x1="1075.6" y1="164.0" x2="1075.6" y2="204.0" stroke="#23211e" stroke-width="1"/>
-<circle cx="1075.6" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
-<rect x="1000.6" y="28.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="1075.6" y="55.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Japanese</text>
-<text x="1075.6" y="74.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">1950</text>
-<line x1="1046.6" y1="85.0" x2="1104.6" y2="85.0" stroke="#ddd6cc" stroke-width="1"/>
-<text x="1075.6" y="108.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">tsunami</text>
-<text x="1075.6" y="129.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">karaoke</text>
-<text x="1075.6" y="150.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">emoji</text>
-<line x1="1200.0" y1="216.0" x2="1200.0" y2="256.0" stroke="#23211e" stroke-width="1"/>
-<circle cx="1200.0" cy="210" r="5" fill="#faf8f4" stroke="#23211e" stroke-width="2"/>
-<rect x="1125.0" y="256.0" width="150" height="136" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="1200.0" y="283.0" text-anchor="middle" font-size="17" font-weight="700" fill="#23211e">Korean</text>
-<text x="1200.0" y="302.0" text-anchor="middle" font-size="12" fill="#8a827a" letter-spacing="0.5">2021</text>
-<line x1="1171.0" y1="313.0" x2="1229.0" y2="313.0" stroke="#ddd6cc" stroke-width="1"/>
-<text x="1200.0" y="336.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">mukbang</text>
-<text x="1200.0" y="357.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">hallyu</text>
-<text x="1200.0" y="378.0" text-anchor="middle" font-size="16" font-style="italic" fill="#23211e">daebak</text>
+    <p class="kicker">why this changes the language</p>
+    <h2>The machine does not just listen. It decides.</h2>
+    <div class="figwrap"><svg viewBox="0 0 1200 196" xmlns="http://www.w3.org/2000/svg" class="chain" role="img" aria-label="Accent, wrong transcription, less reach, changed pronunciation">
+<rect x="1" y="26" width="262" height="112" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="19" y="54" font-size="13" font-weight="700" fill="#8a827a" letter-spacing="1">1</text>
+<text x="19" y="84" font-size="18" font-weight="400" fill="#23211e">You speak with</text>
+<text x="19" y="107" font-size="18" font-weight="400" fill="#23211e">an accent</text>
+<path d="M 273 82 L 295 82" stroke="#23211e" stroke-width="2"/>
+<path d="M 295 82 l -7 -5 M 295 82 l -7 5" stroke="#23211e" stroke-width="2" fill="none"/>
+<rect x="313" y="26" width="262" height="112" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="331" y="54" font-size="13" font-weight="700" fill="#8a827a" letter-spacing="1">2</text>
+<text x="331" y="84" font-size="18" font-weight="400" fill="#23211e">The AI writes it</text>
+<text x="331" y="107" font-size="18" font-weight="400" fill="#23211e">down wrong</text>
+<path d="M 585 82 L 607 82" stroke="#23211e" stroke-width="2"/>
+<path d="M 607 82 l -7 -5 M 607 82 l -7 5" stroke="#23211e" stroke-width="2" fill="none"/>
+<rect x="625" y="26" width="262" height="112" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="643" y="54" font-size="13" font-weight="700" fill="#8a827a" letter-spacing="1">3</text>
+<text x="643" y="84" font-size="18" font-weight="400" fill="#23211e">The algorithm shows</text>
+<text x="643" y="107" font-size="18" font-weight="400" fill="#23211e">it to fewer people</text>
+<path d="M 897 82 L 919 82" stroke="#23211e" stroke-width="2"/>
+<path d="M 919 82 l -7 -5 M 919 82 l -7 5" stroke="#23211e" stroke-width="2" fill="none"/>
+<rect x="937" y="26" width="262" height="112" rx="3" fill="#23211e" stroke="#23211e" stroke-width="2"/>
+<text x="955" y="54" font-size="13" font-weight="700" fill="#a9a29a" letter-spacing="1">4</text>
+<text x="955" y="84" font-size="18" font-weight="700" fill="#ffffff">You change how</text>
+<text x="955" y="107" font-size="18" font-weight="700" fill="#ffffff">you speak</text>
+<text x="1" y="178" font-size="15" fill="#8a827a">and the machine never had to change at all</text>
 </svg></div>
-    <p class="small">Black box = the original English. Everything else came later.
-      Dates are roughly when the words arrived &mdash; not to scale.</p>
-  </div>
-</section>
-
-<!-- NEW: why english borrowed -->
-<section class="slide">
-  <div class="inner">
-    <p class="kicker">the reason behind it</p>
-    <h2>Why did English borrow so much?</h2>
-    <div class="reasons">
-      <div class="rw"><span class="lang">Latin</span><span class="why">religion &amp; education</span></div>
-      <div class="rw"><span class="lang">Old Norse</span><span class="why">invasion &amp; settlement</span></div>
-      <div class="rw"><span class="lang">French</span><span class="why">conquest</span></div>
-      <div class="rw"><span class="lang">Greek</span><span class="why">science &amp; the Renaissance</span></div>
-      <div class="rw"><span class="lang">Others</span><span class="why">trade</span></div>
-    </div>
-    <p class="lead">Whenever English speakers met new people,
-      <span class="mark">English picked up their words.</span></p>
-    <p class="lead">So let&rsquo;s look at how that happened &mdash; starting with Latin.</p>
-  </div>
-</section>
-
-<!-- NEW: latin -->
-<section class="slide">
-  <div class="inner">
-    <p class="kicker">theft no. 1 &middot; 600, and again 1500</p>
-    <h2>Latin came twice.</h2>
-    <div class="waves">
-      <div class="wave">
-        <div class="when">first &mdash; the monks, around 600</div>
-        <p>Christian missionaries came to England. They taught and wrote in Latin, and the words stayed.</p>
-        <div class="list">school &middot; street &middot; wine &middot; candle &middot; priest &middot; cheese &middot; kitchen</div>
-      </div>
-      <div class="wave">
-        <div class="when">second &mdash; the scientists, 1500&ndash;1700</div>
-        <p>New discoveries needed new words. Nobody invented them &mdash; they took Latin again.</p>
-        <div class="list">data &middot; formula &middot; species &middot; index &middot; focus &middot; maximum</div>
-      </div>
-    </div>
-    <p class="lead">Latin is <span class="mark">28% of English</span> &mdash; almost a third of the dictionary.<br>
-      We just stopped noticing.</p>
+    <p class="lead">TikTok and YouTube read your video through automatic captions.
+      If the caption is wrong, <span class="mark">fewer people ever see you</span> &mdash;
+      and creators are already changing their pronunciation to fix that.</p>
   </div>
 </section>
 
 <!-- 5 -->
 <section class="slide haspic">
   <div class="inner"><div>
-    <p class="kicker">theft no. 2 &middot; 800&ndash;1000</p>
-    <h2>The Vikings came to rob.<br>Then they stayed.</h2>
-    <p>They attacked England for 200 years, and then they lived there.
-       The two languages mixed. English kept their words:</p>
-    <div class="words">
-      <span>sky</span><span>egg</span><span>knife</span><span>window</span>
-      <span>husband</span><span>law</span><span>skin</span><span>ugly</span>
-    </div>
-    <p class="small"><em>window</em> is Old Norse <em>vindauga</em> &mdash; &ldquo;wind-eye&rdquo;. A hole for the wind.</p>
-    <div class="rule"></div>
-    <p>And English also took these:</p>
-    <div class="words big"><span>they</span><span>them</span><span>their</span></div>
-    <p class="lead">Most languages <em>never</em> borrow words like this. English did.</p>
+    <p class="kicker">my argument</p>
+    <h2>AI should learn our accents.<br>Not the other way around.</h2>
+    <ul class="plan">
+      <li><span class="no">1</span><span class="what">Where the idea came from &mdash; <b>my own voice</b></span></li>
+      <li><span class="no">2</span><span class="what">What <b>Standard English Ideology</b> means: one way of speaking counts as the correct one</span></li>
+      <li><span class="no">3</span><span class="what">The <b>Stanford study</b> &mdash; and what it means for anyone with an accent</span></li>
+      <li><span class="no">4</span><span class="what">What this does to people online &mdash; <b>fewer views, less money</b></span></li>
+      <li><span class="no">5</span><span class="what">What I think has to change &mdash; <b>better training data</b></span></li>
+    </ul>
+    <p class="lead">If you do not sound standard, fewer people see you.<br>
+      Software created a language problem.</p>
   </div>
-    <div class="picwrap"><img class="pic" style="width:285px" src="img/05-viking.jpg" alt="a viking carrying away a stolen window frame"></div>
+    <div class="picwrap"><img class="pic" style="width:400px" src="img/05-learning.webp" alt="a phone sitting on a chair taking notes while people speak to it"></div>
   </div>
 </section>
 
 <!-- 6 -->
-<section class="slide haspic">
-  <div class="inner"><div>
-    <p class="kicker">theft no. 3 &middot; 1066</p>
-    <h2>The French take over.</h2>
-    <p>William the Conqueror wins. For the next 300 years the kings of England speak French.
-       The farmers keep speaking English.</p>
-    <table>
-      <tr><th>in the field &mdash; English</th><th>on the table &mdash; French</th></tr>
-      <tr><td>cow</td><td class="fr">beef</td></tr>
-      <tr><td>pig</td><td class="fr">pork</td></tr>
-      <tr><td>sheep</td><td class="fr">mutton</td></tr>
-      <tr><td>deer</td><td class="fr">venison</td></tr>
-    </table>
-    <p class="lead">The poor kept the animals. The rich ate them.<br>
-      <span class="mark">1,000 years later we still use both words.</span></p>
-  </div>
-    <div class="picwrap"><img class="pic" style="width:380px" src="img/06-cow.jpg" alt="two cows, one of them wearing a french beret"></div>
-  </div>
-</section>
-
-<!-- 7 -->
-<section class="slide haspic">
-  <div class="inner"><div>
-    <p class="kicker">theft no. 4 &middot; 1600&ndash;1900</p>
-    <h2>Then English went out<br>into the world.</h2>
-    <p>British ships sailed everywhere. They came home with tea, cotton &mdash; and words.</p>
-    <ul class="olist">
-      <li><span class="w">shampoo</span> <span class="src">Hindi <em>ch&#257;mpo</em> &mdash; &ldquo;to press, to massage&rdquo;</span></li>
-      <li><span class="w">pyjamas</span> <span class="src">Hindi / Persian &mdash; &ldquo;leg clothes&rdquo;</span></li>
-      <li><span class="w">jungle</span> <span class="src">Hindi <em>ja&#7749;gal</em></span></li>
-      <li><span class="w">bungalow</span> <span class="src">Hindi &mdash; &ldquo;a house in the Bengal style&rdquo;</span></li>
-      <li><span class="w">safari</span> <span class="src">Swahili &mdash; &ldquo;journey&rdquo;</span></li>
-      <li><span class="w">tea</span> <span class="src">Chinese (Min Nan) <em>t&#251;</em></span></li>
-    </ul>
-    <p class="lead">This is how English became a world language.<br>Not because it is easy &mdash; because of ships and power.</p>
-  </div>
-    <div class="picwrap"><img class="pic" style="width:285px" src="img/07-ship.jpg" alt="a sailing ship loaded with soap, tea and pyjamas"></div>
-  </div>
-</section>
-
-<!-- 8 -->
 <section class="slide">
   <div class="inner">
-    <p class="kicker">quiz</p>
-    <h2>Where is this word from?</h2>
-    <p class="tap">click a word to see the answer</p>
-    <div class="cards">
-      <div class="card"><div class="q">ketchup</div><div class="a">Chinese &mdash; <em>k&#234;-tsiap</em>, a fish sauce. Not American at all.</div></div>
-      <div class="card"><div class="q">chocolate</div><div class="a">Nahuatl (Mexico), through Spanish.</div></div>
-      <div class="card"><div class="q">sofa</div><div class="a">Arabic &mdash; <em>&#7779;uffa</em>, a bench.</div></div>
-      <div class="card"><div class="q">robot</div><div class="a">Czech &mdash; <em>robota</em>, &ldquo;hard work&rdquo;. From a play in 1920.</div></div>
-      <div class="card"><div class="q">tsunami</div><div class="a">Japanese &mdash; &ldquo;harbour wave&rdquo;.</div></div>
-      <div class="card"><div class="q">zero</div><div class="a">Arabic &mdash; <em>&#7779;ifr</em>. So is <em>algebra</em>.</div></div>
+    <p class="kicker">the essay &middot; a first draft</p>
+    <div class="essay">
+      <p>A few days ago, I was trying to use a voice-to-text feature on my phone, but it
+      produced a lot of mistakes. Since I often speak German with a Bavarian dialect, the AI
+      simply struggled to understand me. This everyday situation made me think about our
+      course topic and how technology handles the English language. AI and algorithms are
+      becoming more and more present in our daily lives&mdash;whether you like it or not. But
+      I realized that these tools do not just passively transcribe what we say; they are
+      actually starting to change how people speak English. Because algorithms often only
+      understand one specific standard, users are forced to adapt their voices to the machine.
+      In this essay, I want to discuss how AI enforces <q>Standard English Ideology</q> and how
+      this changes the power dynamics of modern communication.</p>
+
+      <p>While thinking about my own experience, I noticed that modern technology perfectly
+      shows how this ideology works in the real world today. When we look at auto-caption tools
+      or speech recognition, we can see a clear power dynamic. Most of these AI models are
+      trained on data from white, standard American English speakers. For example, a 2020 study
+      from Stanford University tested speech recognition systems from large tech companies. The
+      researchers found that the software made significantly more mistakes when Black people
+      were speaking compared to white speakers. The same issue applies to non-native speakers
+      from all over the world. Because they have an accent, the software simply fails to
+      transcribe their words correctly.</p>
+
+      <p>This creates a strict power imbalance on platforms like TikTok or YouTube. These
+      platforms use automatic transcriptions to understand what a video is about and to show it
+      to the right audience. If the algorithm cannot understand your accent, your content might
+      not reach many people, which means you can lose views and even income. Because of this
+      disadvantage, we can see a real shift in the English language: many creators are actually
+      starting to change their pronunciation. They try to sound more like the standard just to
+      be understood by the machine.</p>
+
+      <p>In conclusion, Standard English Ideology is built directly into the software we use
+      every day, and it is actively changing how people speak globally. If you do not fit the
+      linguistic standard, you lose visibility online. Since English is an international
+      language, AI must be trained to understand diverse accents, instead of forcing everyone
+      to adapt to one single standard.</p>
     </div>
   </div>
 </section>
 
-<!-- 9 -->
-<section class="slide haspic">
-  <div class="inner"><div>
-    <p class="kicker">and today?</p>
-    <h2>English is still stealing.<br>Right now. From us.</h2>
-    <p>September 2021: the Oxford English Dictionary added <span class="mark">26 Korean words</span> at once.</p>
-    <div class="words">
-      <span>hallyu</span><span>mukbang</span><span>oppa</span><span>unni</span>
-      <span>daebak</span><span>skinship</span><span>chimaek</span><span>manhwa</span>
-      <span>banchan</span><span>K-drama</span><span>konglish</span>
-    </div>
-    <p class="lead">1,000 years ago it was the Vikings.<br>Today it is Korea.</p>
-  </div>
-    <div class="picwrap"><img class="pic" style="width:300px" src="img/09-mukbang.jpg" alt="a dictionary eating noodles with chopsticks"></div>
-  </div>
-</section>
-
-<!-- 10 -->
-<section class="slide haspic">
-  <div class="inner"><div>
-    <p class="kicker">the other direction</p>
-    <h2>And Korea makes<br>its own English.</h2>
-    <div class="words">
-      <span>hand phone</span><span>one-shot</span><span>eye shopping</span>
-      <span>skinship</span><span>fighting!</span><span>apart</span>
-    </div>
-    <p class="lead">Some of these an American could guess.<br>
-       <span class="mark">fighting!</span> &mdash; they know the word, just not what you mean by it.<br>
-       <span class="mark">skinship</span> &mdash; most have never heard it at all.<br>
-       But everyone in this room knows all six.</p>
-    <div class="rule"></div>
-    <p class="lead"><b>So &mdash; is this wrong English? Or is it just Korean English?</b></p>
-  </div>
-    <div class="picwrap"><img class="pic" style="width:355px" src="img/10-konglish.jpg" alt="someone shouting fighting, a tourist looking confused"></div>
-  </div>
-</section>
-
-<!-- 11 -->
-<section class="slide haspic">
-  <div class="inner"><div>
-    <p class="huge">English is a thief.</p>
-    <div class="rule"></div>
-    <p class="lead">That is exactly why it belongs to everybody.</p>
-    <p class="by" style="margin-top:2.2em;color:#9a938b">Thank you. Any questions?</p>
-  </div>
-    <div class="picwrap"><img class="pic" style="width:440px" src="img/11-sharing.jpg" alt="the burglar handing out letters to everybody"></div>
-  </div>
-</section>
-
-<!-- NEW: sources -->
-<section class="slide">
-  <div class="inner">
-    <p class="kicker">sources</p>
-    <h2>Where we got this from.</h2>
-    <ul class="refs">
-      <li><span class="what">The vocabulary numbers</span> &mdash; Finkenstaedt &amp; Wolff, <em>Ordered Profusion</em> (1973), about 80,000 words of the Shorter Oxford English Dictionary</li>
-      <li><span class="what">Word origins</span> &mdash; Oxford English Dictionary and the Online Etymology Dictionary</li>
-      <li><span class="what">The 26 Korean words</span> &mdash; Oxford English Dictionary update, September 2021</li>
-      <li><span class="what">The family tree</span> &mdash; the Indo-European language family; homeland on the Pontic&ndash;Caspian steppe, north of the Black Sea</li>
-      <li><span class="what">The old texts</span> &mdash; West Saxon Gospels (c. 1000) &middot; Wycliffe Bible (c. 1390) &middot; King James Bible (1611)</li>
-      <li><span class="what">Background</span> &mdash; BBC / Open University, <em>The History of English in 10 Minutes</em></li>
-    </ul>
-  </div>
-</section>
 
 <div class="bar-nav">
-  <span>English is a Thief</span>
+  <span>When the machine doesn’t understand you</span>
   <span class="right">
-    <span><b id="cur">1</b> / <span id="tot">16</span> &nbsp;&nbsp; &larr; &rarr;</span>
+    <span><b id="cur">1</b> / <span id="tot">6</span> &nbsp;&nbsp; &larr; &rarr;</span>
     <button class="fsbtn" id="fs" title="fullscreen (F)">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
         <path d="M1 4V1h3M8 1h3v3M11 8v3H8M4 11H1V8"/>
