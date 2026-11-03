@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When the Machine Doesn’t Understand You</title>
+<style>
+  :root{
+    --ink:#23211e; --soft:#7b736b; --paper:#faf8f4; --line:#ddd6cc;
+    --mark:#ffe27a; --red:#b03a2e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Helvetica Neue",Helvetica,Arial,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    line-height:1.45; -webkit-font-smoothing:antialiased;
+  }
+  .slide{
+    display:none; min-height:100vh; padding:3.5vh 6vw 6vh;
+    flex-direction:column; justify-content:center;
+  }
+  .slide.on{display:flex}
+  .inner{width:100%;max-width:1180px;margin:0 auto}
+
+  h1{font-size:clamp(34px,5.2vw,68px);line-height:1.08;letter-spacing:-.02em}
+  h2{font-size:clamp(26px,3.6vw,48px);line-height:1.12;letter-spacing:-.015em;margin-bottom:.5em}
+  p{font-size:clamp(17px,1.9vw,26px);max-width:24em}
+  p + p{margin-top:.7em}
+  .lead{font-size:clamp(19px,2.3vw,32px)}
+  .small{font-size:clamp(13px,1.1vw,16px);color:var(--soft);max-width:34em}
+  .mark{background:var(--mark);padding:0 .12em}
+  em{font-style:italic}
+  b{font-weight:700}
+
+  .kicker{
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--soft);margin-bottom:1.4em;
+  }
+  .rule{width:70px;height:3px;background:var(--ink);margin:.85em 0}
+
+  /* title slide */
+  .title h1{font-size:clamp(44px,9vw,120px);line-height:.98}
+  /* the title shares its width with the drawing, so it needs to be smaller */
+  .title.haspic h1{font-size:clamp(28px,4.4vw,56px)}
+  .title .sub{font-size:clamp(18px,2.4vw,32px);color:var(--soft);margin-top:.6em}
+  .title .by{margin-top:2.4em;font-size:clamp(14px,1.4vw,19px);color:var(--soft)}
+  .hint{margin-top:1.2em;font-size:13px;color:var(--soft)}
+
+  /* big number / statement */
+  .huge{font-size:clamp(40px,7vw,96px);line-height:1;letter-spacing:-.03em;font-weight:700}
+
+  /* graphics */
+  .figwrap{overflow-x:auto;margin:1.2em 0 .6em;padding-bottom:6px}
+  svg.tl{width:100%;min-width:820px;height:auto;display:block}
+  svg.bar{width:100%;max-width:1000px;height:auto;display:block;margin:1.4em 0 .4em}
+  .figslide{padding-left:3vw;padding-right:3vw}
+  .figslide .inner{max-width:1520px}
+
+  /* word rows */
+  .words{display:flex;flex-wrap:wrap;gap:.5em .7em;margin:.9em 0}
+  .words span{
+    border:1px solid var(--line);background:#fff;border-radius:3px;
+    padding:.3em .7em;font-size:clamp(16px,1.9vw,26px);font-style:italic;
+  }
+  .words.big span{font-size:clamp(22px,3.2vw,44px);font-style:normal;font-weight:700;
+    background:var(--mark);border-color:var(--ink)}
+
+  /* cow/beef table */
+  table{border-collapse:collapse;margin:1em 0;font-size:clamp(17px,2.2vw,30px)}
+  th,td{padding:.36em 1.1em;text-align:left;border-bottom:1px solid var(--line)}
+  th{font-size:clamp(12px,1.1vw,15px);letter-spacing:.1em;text-transform:uppercase;
+     color:var(--soft);font-weight:400;border-bottom:2px solid var(--ink)}
+  td.fr{font-weight:700}
+  td .arw{color:var(--soft);padding:0 .5em}
+
+  /* origin list */
+  .olist{margin:.9em 0;display:grid;grid-template-columns:1fr 1fr;gap:.35em 2.6em}
+  @media screen and (max-width:760px){.olist{grid-template-columns:1fr}}
+  .olist li{list-style:none;padding:.3em 0;border-bottom:1px solid var(--line)}
+  .olist .w{display:block;font-weight:700;font-size:clamp(17px,2.1vw,28px)}
+  .olist .src{display:block;color:var(--soft);font-size:clamp(12px,1.25vw,17px);line-height:1.35}
+
+  /* quiz cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:1.2em 0}
+  @media screen and (max-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+  .card{
+    border:2px solid var(--ink);background:#fff;border-radius:4px;
+    padding:1.1em .8em;text-align:center;cursor:pointer;user-select:none;
+    min-height:128px;display:flex;flex-direction:column;justify-content:center;
+  }
+  .card .q{font-size:clamp(18px,2.4vw,32px);font-weight:700}
+  .card .a{display:none;margin-top:.45em;font-size:clamp(13px,1.4vw,18px);color:var(--soft);line-height:1.3}
+  .card.open{background:var(--mark)}
+  .card.open .a{display:block;color:#5c554c}
+  .tap{font-size:13px;color:var(--soft)}
+
+  /* footer nav */
+  .bar-nav{
+    position:fixed;left:0;right:0;bottom:0;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:10px 18px;font-size:12px;color:var(--soft);
+    background:linear-gradient(to top,var(--paper) 60%,transparent);
+  }
+  .bar-nav b{color:var(--ink)}
+  .prog{position:fixed;top:0;left:0;height:3px;background:var(--ink);transition:width .18s}
+  /* slides with a drawing next to the text */
+  .haspic .inner{
+    display:grid; grid-template-columns:minmax(0,1fr) auto;
+    gap:3.5vw; align-items:center;
+  }
+  .haspic .picwrap{justify-self:end;max-width:100%}
+  .haspic .pic{
+    height:auto; display:block; max-width:100%;
+    mix-blend-mode:multiply; filter:contrast(1.06) brightness(1.03);
+  }
+  @media screen and (max-width:880px){
+    .haspic .inner{grid-template-columns:1fr}
+    .haspic .pic{width:210px !important;margin:.8em auto 0}
+  }
+  /* the closing line must stay on one line next to the picture */
+  .haspic .huge{font-size:clamp(32px,5.2vw,70px)}
+
+
+  /* family tree of English */
+  svg.tree{width:100%;height:50vh;display:block;margin:.2em auto}
+
+  /* the same sentence through the centuries */
+  .eras{margin:.8em 0 1em}
+  .era{padding:.4em 0;border-bottom:1px solid var(--line)}
+  .era .lbl{
+    font-size:clamp(10px,1vw,13px);letter-spacing:.09em;text-transform:uppercase;
+    color:var(--soft);display:flex;gap:1.1em;margin-bottom:.12em;
+  }
+  .era .txt{font-family:"Iowan Old Style",Georgia,serif;
+    font-size:clamp(15px,2vw,27px);line-height:1.28}
+
+  /* latin, the two waves */
+  .waves{display:grid;grid-template-columns:1fr 1fr;gap:1.4em 2.8em;margin:.9em 0 1em}
+  @media screen and (max-width:760px){.waves{grid-template-columns:1fr}}
+  .wave .when{
+    font-size:clamp(10px,1vw,13px);letter-spacing:.09em;text-transform:uppercase;
+    color:var(--soft);border-bottom:2px solid var(--ink);padding-bottom:.28em;margin-bottom:.45em;
+  }
+  .wave p{font-size:clamp(13px,1.45vw,19px);max-width:none;margin:0 0 .45em}
+  .wave .list{font-size:clamp(15px,1.9vw,25px);font-style:italic;line-height:1.55}
+
+  /* why english borrowed */
+  .reasons{margin:.8em 0 .9em;max-width:920px}
+  .rw{display:grid;grid-template-columns:minmax(0,9.5em) 1fr;gap:1.6em;
+    align-items:baseline;padding:.4em 0;border-bottom:1px solid var(--line)}
+  .rw .lang{font-weight:700;font-size:clamp(17px,2.1vw,28px)}
+  .rw .why{color:var(--soft);font-size:clamp(14px,1.75vw,23px)}
+
+  /* sources */
+  .refs{margin:.8em 0;max-width:1040px}
+  .refs li{list-style:none;padding:.32em 0;border-bottom:1px solid var(--line);
+    font-size:clamp(13px,1.4vw,19px);line-height:1.4}
+  .refs .what{font-weight:700}
+
+  /* the pieces of a slide come in one after another, not all at once.
+     the drawing never animates: an animated ancestor makes its own stacking
+     context, which would break the multiply blend and put a white box
+     behind it. */
+  @keyframes riseIn{
+    from{opacity:0;transform:translateY(24px)}
+    to{opacity:1;transform:none}
+  }
+  .slide.on:not(.haspic) .inner > *,
+  .slide.on.haspic .inner > div:first-child > *{
+    animation:riseIn .52s cubic-bezier(.21,.68,.32,1) both;
+  }
+  .slide.on:not(.haspic) .inner > *:nth-child(1),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(1){animation-delay:0s}
+  .slide.on:not(.haspic) .inner > *:nth-child(2),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(2){animation-delay:.07s}
+  .slide.on:not(.haspic) .inner > *:nth-child(3),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(3){animation-delay:.14s}
+  .slide.on:not(.haspic) .inner > *:nth-child(4),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(4){animation-delay:.21s}
+  .slide.on:not(.haspic) .inner > *:nth-child(5),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(5){animation-delay:.28s}
+  .slide.on:not(.haspic) .inner > *:nth-child(n+6),
+  .slide.on.haspic .inner > div:first-child > *:nth-child(n+6){animation-delay:.34s}
+
+  /* labels you uncover yourself, in any order */
+  .rv{opacity:0;transition:opacity .35s ease}
+  .rv.shown{opacity:1}
+  .seg{cursor:pointer}
+  .seg:hover{stroke-width:3.5}
+
+  @media (prefers-reduced-motion:reduce){
+    .slide.on .inner *{animation:none !important}
+    .rv{transition:none}
+  }
+
+
+  /* the concrete example: what I say, what the phone makes of it */
+  .demo{border-left:3px solid var(--ink);padding:.2em 0 .2em 1.1em;margin:1em 0 1.1em;max-width:900px}
+  .demo .row{display:grid;grid-template-columns:7.2em 1fr;gap:.9em;align-items:baseline;padding:.3em 0}
+  @media screen and (max-width:700px){.demo .row{grid-template-columns:1fr}}
+  .demo .who{
+    font-size:clamp(10px,1vw,13px);letter-spacing:.09em;text-transform:uppercase;color:var(--soft);
+  }
+  .demo .said{font-size:clamp(18px,2.4vw,32px);font-weight:700;line-height:1.25}
+  .demo .said.wrong{font-weight:400;color:var(--soft);text-decoration:line-through;
+    text-decoration-thickness:1px}
+  .demo .mean{font-size:clamp(13px,1.4vw,18px);color:var(--soft);margin-top:.1em}
+
+  /* the essay outline */
+  .plan{margin:.8em 0 1em;max-width:1000px}
+  .plan li{
+    list-style:none;display:grid;grid-template-columns:2.2em 1fr;gap:.8em;
+    padding:.36em 0;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  @media screen and (max-width:700px){.plan li{grid-template-columns:1.8em 1fr}}
+  .plan .no{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:clamp(11px,1.1vw,14px);color:var(--soft)}
+  .plan .what{font-size:clamp(15px,1.75vw,23px)}
+  .plan .what b{font-weight:700}
+
+  svg.wer{width:100%;max-width:1000px;height:auto;display:block;margin:1em 0 .4em}
+  svg.chain{width:100%;min-width:900px;height:auto;display:block}
+
+  /* the essay itself, set small like a printed page */
+  .essay{
+    column-count:2; column-gap:2.6em;
+    font-size:clamp(10px,1.08vw,14px); line-height:1.52;
+    max-width:1150px; margin:.7em 0 0;
+  }
+  @media screen and (max-width:820px){.essay{column-count:1}}
+  .essay p{max-width:none; font-size:inherit; margin:0 0 .85em}
+  .essay p:last-child{margin-bottom:0}
+  .essay q{quotes:"\201C" "\201D"}
+
+  .bar-nav .right{display:flex;align-items:center;gap:16px}
+  .fsbtn{
+    display:inline-flex;align-items:center;gap:6px;
+    font:inherit;font-size:12px;line-height:1;cursor:pointer;
+    color:var(--soft);background:#fff;border:1px solid var(--line);
+    border-radius:3px;padding:6px 9px;
+  }
+  .fsbtn:hover{color:var(--ink);border-color:var(--ink)}
+  .fsbtn svg{display:block}
+  @media print{
+    @page{size:13.333in 7.5in;margin:0}
+    html,body{background:var(--paper);height:auto}
+    body{-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:0}
+    .bar-nav,.prog,.hint{display:none !important}
+    .slide{
+      display:flex !important;
+      width:13.333in;height:7.5in;min-height:0;
+      padding:.25in .7in;overflow:hidden;
+      break-after:page;page-break-after:always;break-inside:avoid;
+    }
+    .slide:last-of-type{break-after:auto;page-break-after:auto}
+    .figslide{padding-left:.35in;padding-right:.35in}
+    .figwrap{overflow:visible}
+    .haspic .pic{mix-blend-mode:multiply}
+    *{animation:none !important}
+    .rv{opacity:1 !important}
+    .seg{cursor:auto}
+    .card{break-inside:avoid}
+    th,td{padding-top:.34em;padding-bottom:.34em}
+  }
+</style>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+
+<!-- 1 -->
+<section class="slide haspic title">
+  <div class="inner"><div>
+    <h1>When the machine<br>doesn&rsquo;t understand you</h1>
+    <p class="sub">How AI is changing the way we speak English</p>
+    <p class="by">Global English &middot; essay presentation<br>
+       Max Aulinger</p>
+    <p class="hint">press &rarr; to start &middot; F = fullscreen</p>
+  </div>
+    <div class="picwrap"><img class="pic" style="width:420px" src="img/01-voice.webp" alt="a person speaking into a phone that stares blankly past them"></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide haspic">
+  <div class="inner"><div>
+    <p class="kicker">how I got to the topic</p>
+    <h2>It started with my own voice.</h2>
+    <p class="lead">I am German, but I speak a strong Bavarian dialect.
+      When I use voice-to-text, my phone often writes nonsense. For example:</p>
+    <div class="demo">
+      <div class="row">
+        <span class="who">I say</span>
+        <span>
+          <span class="said">&ldquo;I hob koa Zeit&rdquo;</span>
+          <span class="mean">Bavarian for &ldquo;I have no time&rdquo;</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="who">phone writes</span>
+        <span class="said wrong">&ldquo;I hope Korea&rdquo;</span>
+      </div>
+    </div>
+    <p class="lead">The software is not broken.
+      I just <span class="mark">don&rsquo;t sound like the people it learned from.</span></p>
+    <p class="lead">So I asked myself: if this happens to me in German &mdash;
+      what happens to English speakers with an accent?</p>
+  </div>
+    <div class="picwrap"><img class="pic" style="width:390px" src="img/02-voices.webp" alt="six people speaking, only one voice reaches the phone"></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">the evidence</p>
+    <h2>It is not just a feeling.</h2>
+    <svg viewBox="0 0 1000 232" xmlns="http://www.w3.org/2000/svg" class="wer" role="img" aria-label="Speech recognition makes 35 percent errors for Black speakers and 19 percent for white speakers">
+<text x="232" y="69" text-anchor="end" font-size="19" font-weight="700" fill="#23211e">White speakers</text>
+<rect x="250" y="34" width="304" height="58" fill="#d2c5ac" stroke="#23211e" stroke-width="1.5"/>
+<text x="538" y="71" text-anchor="end" font-size="23" font-weight="700" fill="#23211e">19%</text>
+<text x="232" y="153" text-anchor="end" font-size="19" font-weight="700" fill="#23211e">Black speakers</text>
+<rect x="250" y="118" width="560" height="58" fill="#23211e" stroke="#23211e" stroke-width="1.5"/>
+<text x="794" y="155" text-anchor="end" font-size="23" font-weight="700" fill="#ffffff">35%</text>
+<path d="M 832 63 L 844 63 L 844 147 L 832 147" fill="none" stroke="#23211e" stroke-width="1.5"/>
+<text x="856" y="106" font-size="17" font-weight="700" fill="#23211e">almost</text>
+<text x="856" y="126" font-size="17" font-weight="700" fill="#23211e">twice as many</text>
+<text x="250" y="214" font-size="15" fill="#8a827a">word error rate &mdash; how often the software writes down the wrong word</text>
+</svg>
+    <p class="small">Stanford University, published in <em>PNAS</em> (2020). The researchers tested five speech
+      recognition systems &mdash; Amazon, Apple, Google, IBM and Microsoft &mdash; with the same sentences.
+      Non-native speakers run into the same wall.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide figslide">
+  <div class="inner">
+    <p class="kicker">why this changes the language</p>
+    <h2>The machine does not just listen. It decides.</h2>
+    <div class="figwrap"><svg viewBox="0 0 1200 196" xmlns="http://www.w3.org/2000/svg" class="chain" role="img" aria-label="Accent, wrong transcription, less reach, changed pronunciation">
+<rect x="1" y="26" width="262" height="112" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="19" y="54" font-size="13" font-weight="700" fill="#8a827a" letter-spacing="1">1</text>
+<text x="19" y="84" font-size="18" font-weight="400" fill="#23211e">You speak with</text>
+<text x="19" y="107" font-size="18" font-weight="400" fill="#23211e">an accent</text>
+<path d="M 273 82 L 295 82" stroke="#23211e" stroke-width="2"/>
+<path d="M 295 82 l -7 -5 M 295 82 l -7 5" stroke="#23211e" stroke-width="2" fill="none"/>
+<rect x="313" y="26" width="262" height="112" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="331" y="54" font-size="13" font-weight="700" fill="#8a827a" letter-spacing="1">2</text>
+<text x="331" y="84" font-size="18" font-weight="400" fill="#23211e">The AI writes it</text>
+<text x="331" y="107" font-size="18" font-weight="400" fill="#23211e">down wrong</text>
+<path d="M 585 82 L 607 82" stroke="#23211e" stroke-width="2"/>
+<path d="M 607 82 l -7 -5 M 607 82 l -7 5" stroke="#23211e" stroke-width="2" fill="none"/>
+<rect x="625" y="26" width="262" height="112" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
+<text x="643" y="54" font-size="13" font-weight="700" fill="#8a827a" letter-spacing="1">3</text>
+<text x="643" y="84" font-size="18" font-weight="400" fill="#23211e">The algorithm shows</text>
+<text x="643" y="107" font-size="18" font-weight="400" fill="#23211e">it to fewer people</text>
+<path d="M 897 82 L 919 82" stroke="#23211e" stroke-width="2"/>
+<path d="M 919 82 l -7 -5 M 919 82 l -7 5" stroke="#23211e" stroke-width="2" fill="none"/>
+<rect x="937" y="26" width="262" height="112" rx="3" fill="#23211e" stroke="#23211e" stroke-width="2"/>
+<text x="955" y="54" font-size="13" font-weight="700" fill="#a9a29a" letter-spacing="1">4</text>
+<text x="955" y="84" font-size="18" font-weight="700" fill="#ffffff">You change how</text>
+<text x="955" y="107" font-size="18" font-weight="700" fill="#ffffff">you speak</text>
+<text x="1" y="178" font-size="15" fill="#8a827a">and the machine never had to change at all</text>
+</svg></div>
+    <p class="lead">TikTok and YouTube read your video through automatic captions.
+      If the caption is wrong, <span class="mark">fewer people ever see you</span> &mdash;
+      and creators are already changing their pronunciation to fix that.</p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide haspic">
+  <div class="inner"><div>
+    <p class="kicker">my argument</p>
+    <h2>AI should learn our accents.<br>Not the other way around.</h2>
+    <ul class="plan">
+      <li><span class="no">1</span><span class="what">Where the idea came from &mdash; <b>my own voice</b></span></li>
+      <li><span class="no">2</span><span class="what">What <b>Standard English Ideology</b> means: one way of speaking counts as the correct one</span></li>
+      <li><span class="no">3</span><span class="what">The <b>Stanford study</b> &mdash; and what it means for anyone with an accent</span></li>
+      <li><span class="no">4</span><span class="what">What this does to people online &mdash; <b>fewer views, less money</b></span></li>
+      <li><span class="no">5</span><span class="what">What I think has to change &mdash; <b>better training data</b></span></li>
+    </ul>
+    <p class="lead">If you do not sound standard, fewer people see you.<br>
+      Software created a language problem.</p>
+  </div>
+    <div class="picwrap"><img class="pic" style="width:400px" src="img/05-learning.webp" alt="a phone sitting on a chair taking notes while people speak to it"></div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">the essay &middot; a first draft</p>
+    <div class="essay">
+      <p>A few days ago, I was trying to use a voice-to-text feature on my phone, but it
+      produced a lot of mistakes. Since I often speak German with a Bavarian dialect, the AI
+      simply struggled to understand me. This everyday situation made me think about our
+      course topic and how technology handles the English language. AI and algorithms are
+      becoming more and more present in our daily lives&mdash;whether you like it or not. But
+      I realized that these tools do not just passively transcribe what we say; they are
+      actually starting to change how people speak English. Because algorithms often only
+      understand one specific standard, users are forced to adapt their voices to the machine.
+      In this essay, I want to discuss how AI enforces <q>Standard English Ideology</q> and how
+      this changes the power dynamics of modern communication.</p>
+
+      <p>While thinking about my own experience, I noticed that modern technology perfectly
+      shows how this ideology works in the real world today. When we look at auto-caption tools
+      or speech recognition, we can see a clear power dynamic. Most of these AI models are
+      trained on data from white, standard American English speakers. For example, a 2020 study
+      from Stanford University tested speech recognition systems from large tech companies. The
+      researchers found that the software made significantly more mistakes when Black people
+      were speaking compared to white speakers. The same issue applies to non-native speakers
+      from all over the world. Because they have an accent, the software simply fails to
+      transcribe their words correctly.</p>
+
+      <p>This creates a strict power imbalance on platforms like TikTok or YouTube. These
+      platforms use automatic transcriptions to understand what a video is about and to show it
+      to the right audience. If the algorithm cannot understand your accent, your content might
+      not reach many people, which means you can lose views and even income. Because of this
+      disadvantage, we can see a real shift in the English language: many creators are actually
+      starting to change their pronunciation. They try to sound more like the standard just to
+      be understood by the machine.</p>
+
+      <p>In conclusion, Standard English Ideology is built directly into the software we use
+      every day, and it is actively changing how people speak globally. If you do not fit the
+      linguistic standard, you lose visibility online. Since English is an international
+      language, AI must be trained to understand diverse accents, instead of forcing everyone
+      to adapt to one single standard.</p>
+    </div>
+  </div>
+</section>
+
+
+<div class="bar-nav">
+  <span>When the machine doesn’t understand you</span>
+  <span class="right">
+    <span><b id="cur">1</b> / <span id="tot">6</span> &nbsp;&nbsp; &larr; &rarr;</span>
+    <button class="fsbtn" id="fs" title="fullscreen (F)">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M1 4V1h3M8 1h3v3M11 8v3H8M4 11H1V8"/>
+      </svg>
+      <span id="fslabel">fullscreen</span>
+    </button>
+  </span>
+</div>
+
+<script>
+  var slides = document.querySelectorAll('.slide');
+  var i = 0;
+  document.getElementById('tot').textContent = slides.length;
+
+  function show(n){
+    var back = n < i;
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
+    // arriving from the left: reveals start hidden. coming back: already shown.
+    slides[i].querySelectorAll('.rv').forEach(function(e){
+      e.classList.toggle('shown', back);
+    });
+    document.getElementById('cur').textContent = i + 1;
+    document.getElementById('prog').style.width = ((i + 1) / slides.length * 100) + '%';
+    window.scrollTo(0, 0);
+    location.hash = i + 1;
+  }
+
+  // uncover one label, in whatever order the class shouts them out
+  function toggleStep(step){
+    var el = slides[i].querySelector('.rv[data-step="' + step + '"]');
+    if (el) el.classList.toggle('shown');
+  }
+  function revealAll(){
+    slides[i].querySelectorAll('.rv').forEach(function(e){ e.classList.add('shown'); });
+  }
+  function next(){ show(i + 1); }
+  function prev(){ show(i - 1); }
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { next(); e.preventDefault(); }
+    if (e.key === 'ArrowLeft'  || e.key === 'PageUp')                    { prev(); e.preventDefault(); }
+    if (e.key >= '1' && e.key <= '9') { toggleStep(e.key); e.preventDefault(); }
+    if (e.key === 'a' || e.key === 'A') { revealAll(); e.preventDefault(); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End')  show(slides.length - 1);
+    if (e.key === 'f' || e.key === 'F') {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    }
+  });
+
+  // click the right side = next, left side = back (but not on a quiz card)
+  document.addEventListener('click', function(e){
+    var seg = e.target.closest('.seg');
+    if (seg) { toggleStep(seg.dataset.step); return; }
+    if (e.target.closest('.card') || e.target.closest('.fsbtn')) return;
+    if (e.clientX > window.innerWidth * 0.28) next(); else prev();
+  });
+
+  document.getElementById('fs').addEventListener('click', function(e){
+    e.stopPropagation();
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  });
+  document.addEventListener('fullscreenchange', function(){
+    document.getElementById('fslabel').textContent =
+      document.fullscreenElement ? 'exit' : 'fullscreen';
+  });
+
+  document.querySelectorAll('.card').forEach(function(c){
+    c.addEventListener('click', function(){ c.classList.toggle('open'); });
+  });
+
+  var start = parseInt(location.hash.replace('#',''), 10);
+  show(start > 0 ? start - 1 : 0);
+</script>
+</body>
+</html>

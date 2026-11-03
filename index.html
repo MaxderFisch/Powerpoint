@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>When the Machine Doesn’t Understand You</title>
+<title>Denglisch</title>
 <style>
   :root{
     --ink:#23211e; --soft:#7b736b; --paper:#faf8f4; --line:#ddd6cc;
@@ -232,6 +232,98 @@
   .essay p:last-child{margin-bottom:0}
   .essay q{quotes:"\201C" "\201D"}
 
+
+  /* the Denglisch sentence: click it to light up the English */
+  .dz{cursor:pointer;max-width:1060px;margin:.7em 0 .2em}
+  .dz p{max-width:none}
+  .dz-de{font-size:clamp(22px,3vw,42px);line-height:1.38}
+  .dz .en{border-radius:3px;padding:0 .06em;transition:background .35s ease}
+  .dz.lit .en{background:var(--mark)}
+  .dz-tr,.dz-out{opacity:0;transition:opacity .4s ease}
+  .dz.lit .dz-tr,.dz.lit .dz-out{opacity:1}
+  .dz-tr{font-size:clamp(14px,1.5vw,20px);color:var(--soft);font-style:italic;margin-top:.8em}
+  .dz-out{font-size:clamp(17px,2.05vw,28px);margin-top:.5em}
+
+  /* lingua franca: text left, 100 dots right */
+  .lf{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4vw;align-items:center}
+  @media screen and (max-width:820px){.lf{grid-template-columns:1fr}}
+  svg.waffle{width:clamp(220px,25vw,320px);height:auto;display:block;margin-bottom:.9em}
+  .key{display:flex;gap:.65em;align-items:baseline;font-size:clamp(14px,1.45vw,19px);max-width:20em;margin:.35em 0}
+  .sw{flex:none;width:.85em;height:.85em;border-radius:50%;border:1.5px solid var(--ink);transform:translateY(.1em)}
+  .sw.dark{background:var(--ink)}
+  .sw.yel{background:#ffe27a}
+
+  /* three kinds of Denglisch */
+  .kinds{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2em 2.4em;margin:1em 0 .6em}
+  @media screen and (max-width:820px){.kinds{grid-template-columns:1fr}}
+  .kind{border-top:3px solid var(--ink);padding-top:.7em}
+  .kind .no{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:clamp(11px,1vw,13px);color:var(--soft)}
+  .kind h3{font-size:clamp(16px,1.75vw,23px);line-height:1.2;margin:.25em 0 .55em}
+  .kind .ex{font-size:clamp(16px,1.85vw,25px);font-style:italic;line-height:1.55}
+  .kind .note{font-size:clamp(13px,1.35vw,18px);color:var(--soft);margin-top:.7em;max-width:none}
+  .kind .note b{color:var(--ink)}
+
+  /* fake-English quiz answers */
+  .card .a .in{display:block;font-size:.7em;letter-spacing:.1em;text-transform:uppercase;color:#9a9188;margin-top:.55em}
+  .card .a .in:first-child{margin-top:.15em}
+
+  /* the downloaden question */
+  .gap-line{font-size:clamp(22px,3vw,42px);max-width:none;margin:.4em 0 .1em}
+  .blank{display:inline-block;min-width:4.2em;border-bottom:3px solid var(--ink);transform:translateY(-.15em)}
+  .opts{display:flex;flex-wrap:wrap;gap:.6em .8em;margin:1em 0 1em}
+  .opts span{border:2px solid var(--ink);background:#fff;border-radius:4px;padding:.3em .9em;
+    font-size:clamp(17px,2.2vw,30px);font-weight:700}
+  .opts:hover span{border-color:#5a544e}
+
+  /* better / worse */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:1.2em 3em;margin:.9em 0 .9em;max-width:1080px}
+  @media screen and (max-width:820px){.two{grid-template-columns:1fr}}
+  .two h3{font-size:clamp(11px,1.05vw,14px);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);
+    font-weight:400;border-bottom:2px solid var(--ink);padding-bottom:.3em;margin-bottom:.35em}
+  .two ul{margin:0;padding:0}
+  .two li{list-style:none;padding:.32em 0;border-bottom:1px solid var(--line);font-size:clamp(15px,1.7vw,22px);line-height:1.35}
+  .two li .eg{color:var(--soft);font-size:.86em;font-style:italic}
+
+  svg.tl3{width:100%;max-width:1150px;min-width:820px;height:auto;display:block;margin:.7em 0 .5em}
+  .poll{font-size:clamp(16px,1.9vw,26px);color:var(--soft);margin-top:.8em;max-width:none}
+  .poll b{color:var(--ink)}
+
+
+  /* two groups of 100 */
+  .waffles{display:flex;flex-wrap:wrap;gap:1.4em 3.2em;align-items:flex-start;margin:1.1em 0 .6em}
+  .waffles figure{margin:0}
+  svg.waffle2{width:clamp(180px,19vw,250px);height:auto;display:block}
+  .waffles figcaption{margin-top:.6em;font-size:clamp(14px,1.5vw,20px);max-width:13em}
+  .waffles figcaption b{font-size:1.6em;display:block;line-height:1.05}
+
+  /* how young Germans talk */
+  .talk{max-width:1040px;margin:.8em 0 .8em}
+  .talk .row{display:grid;grid-template-columns:1.2fr 1fr;gap:1.6em;padding:.36em 0;
+    border-bottom:1px solid var(--line);align-items:baseline}
+  @media screen and (max-width:760px){.talk .row{grid-template-columns:1fr;gap:.1em}}
+  .talk .de{font-size:clamp(18px,2.2vw,30px)}
+  .talk .gl{font-size:clamp(14px,1.5vw,20px);color:var(--soft);font-style:italic}
+  .talk .en{background:var(--mark);border-radius:3px;padding:0 .08em}
+
+  /* youth word of the year */
+  .yw{display:grid;grid-template-columns:1.25fr 1fr;gap:1.2em 3em;margin:.9em 0 .7em;max-width:1120px}
+  @media screen and (max-width:820px){.yw{grid-template-columns:1fr}}
+  .yw h3{font-size:clamp(11px,1.05vw,14px);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);
+    font-weight:400;border-bottom:2px solid var(--ink);padding-bottom:.3em;margin-bottom:.6em}
+  .yw .chips{display:flex;flex-wrap:wrap;gap:.45em .5em}
+  .yw .w{border:1px solid var(--line);background:#fff;border-radius:3px;padding:.22em .6em;
+    font-size:clamp(14px,1.6vw,21px)}
+  .yw .w i{font-style:normal;font-size:.62em;color:var(--soft);margin-left:.45em}
+  .yw .w.en{background:var(--mark);border-color:var(--ink);font-weight:700}
+  .yw .w.other{border-style:dashed;color:var(--soft)}
+  .yw .count{margin-top:.7em;font-size:clamp(16px,1.9vw,26px)}
+  .yw .count b{font-size:1.3em}
+
+  /* fake-English cards: what Germans mean is shown up front */
+  .card .de{font-size:clamp(11px,1.2vw,15px);color:var(--soft);margin-top:.25em;line-height:1.3}
+  .cards.fake .card{min-height:112px;padding:.85em .8em}
+  .cards.fake .card .q{font-size:clamp(17px,2.15vw,29px)}
+
   .bar-nav .right{display:flex;align-items:center;gap:16px}
   .fsbtn{
     display:inline-flex;align-items:center;gap:6px;
@@ -258,6 +350,9 @@
     .haspic .pic{mix-blend-mode:multiply}
     *{animation:none !important}
     .rv{opacity:1 !important}
+    .dz .en{background:var(--mark) !important}
+    .dz-tr,.dz-out{opacity:1 !important}
+    .tap{display:none !important}
     .seg{cursor:auto}
     .card{break-inside:avoid}
     th,td{padding-top:.34em;padding-bottom:.34em}
@@ -269,173 +364,474 @@
 <div class="prog" id="prog"></div>
 
 <!-- 1 -->
-<section class="slide haspic title">
-  <div class="inner"><div>
-    <h1>When the machine<br>doesn&rsquo;t understand you</h1>
-    <p class="sub">How AI is changing the way we speak English</p>
-    <p class="by">Global English &middot; essay presentation<br>
-       Max Aulinger</p>
+<section class="slide title">
+  <div class="inner">
+    <h1>Denglisch</h1>
+    <p class="sub">The influence of English on German &mdash; better or worse?</p>
+    <p class="by">Global English &middot; English as Europe&rsquo;s lingua franca<br>
+       Max Aulinger &middot; [name] &middot; [name] &middot; [name]</p>
     <p class="hint">press &rarr; to start &middot; F = fullscreen</p>
-  </div>
-    <div class="picwrap"><img class="pic" style="width:420px" src="img/01-voice.webp" alt="a person speaking into a phone that stares blankly past them"></div>
   </div>
 </section>
 
 <!-- 2 -->
-<section class="slide haspic">
-  <div class="inner"><div>
-    <p class="kicker">how I got to the topic</p>
-    <h2>It started with my own voice.</h2>
-    <p class="lead">I am German, but I speak a strong Bavarian dialect.
-      When I use voice-to-text, my phone often writes nonsense. For example:</p>
-    <div class="demo">
-      <div class="row">
-        <span class="who">I say</span>
-        <span>
-          <span class="said">&ldquo;I hob koa Zeit&rdquo;</span>
-          <span class="mean">Bavarian for &ldquo;I have no time&rdquo;</span>
-        </span>
-      </div>
-      <div class="row">
-        <span class="who">phone writes</span>
-        <span class="said wrong">&ldquo;I hope Korea&rdquo;</span>
-      </div>
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">a normal German sentence</p>
+    <h2>You don&rsquo;t speak German.<br>How many words do you understand?</h2>
+    <div class="dz">
+      <p class="dz-de">Heute habe ich ein <span class="en">Meeting</span> mit meinem <span class="en">Team</span>.
+        Danach <span class="en">checke</span> ich meine <span class="en">E-Mails</span>,
+        <span class="en">downloade</span> die <span class="en">Files</span> und gehe
+        <span class="en">shoppen</span>. Mein <span class="en">Handy</span> ist fast leer.</p>
+      <p class="dz-tr">&ldquo;Today I have a meeting with my team. Then I check my emails, download the files and go shopping. My phone is almost dead.&rdquo;</p>
+      <p class="dz-out"><b>8 English words</b> in three short sentences &mdash;
+        and one of them <span class="mark">isn&rsquo;t even real English.</span></p>
     </div>
-    <p class="lead">The software is not broken.
-      I just <span class="mark">don&rsquo;t sound like the people it learned from.</span></p>
-    <p class="lead">So I asked myself: if this happens to me in German &mdash;
-      what happens to English speakers with an accent?</p>
-  </div>
-    <div class="picwrap"><img class="pic" style="width:390px" src="img/02-voices.webp" alt="six people speaking, only one voice reaches the phone"></div>
+    <p class="tap">click the sentence</p>
   </div>
 </section>
 
 <!-- 3 -->
 <section class="slide">
   <div class="inner">
-    <p class="kicker">the evidence</p>
-    <h2>It is not just a feeling.</h2>
-    <svg viewBox="0 0 1000 232" xmlns="http://www.w3.org/2000/svg" class="wer" role="img" aria-label="Speech recognition makes 35 percent errors for Black speakers and 19 percent for white speakers">
-<text x="232" y="69" text-anchor="end" font-size="19" font-weight="700" fill="#23211e">White speakers</text>
-<rect x="250" y="34" width="304" height="58" fill="#d2c5ac" stroke="#23211e" stroke-width="1.5"/>
-<text x="538" y="71" text-anchor="end" font-size="23" font-weight="700" fill="#23211e">19%</text>
-<text x="232" y="153" text-anchor="end" font-size="19" font-weight="700" fill="#23211e">Black speakers</text>
-<rect x="250" y="118" width="560" height="58" fill="#23211e" stroke="#23211e" stroke-width="1.5"/>
-<text x="794" y="155" text-anchor="end" font-size="23" font-weight="700" fill="#ffffff">35%</text>
-<path d="M 832 63 L 844 63 L 844 147 L 832 147" fill="none" stroke="#23211e" stroke-width="1.5"/>
-<text x="856" y="106" font-size="17" font-weight="700" fill="#23211e">almost</text>
-<text x="856" y="126" font-size="17" font-weight="700" fill="#23211e">twice as many</text>
-<text x="250" y="214" font-size="15" fill="#8a827a">word error rate &mdash; how often the software writes down the wrong word</text>
+    <p class="kicker">English in Europe</p>
+    <h2>Almost every second European speaks English.</h2>
+    <p class="lead">When a German, a Spaniard and a Pole meet, they speak English.</p>
+    <div class="waffles">
+      <figure><svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" class="waffle2" role="img" aria-label="47 out of 100 Europeans">
+<circle cx="13" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="117" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="221" cy="117" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="247" cy="117" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="13" cy="143" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="39" cy="143" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="65" cy="143" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="91" cy="143" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="117" cy="143" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="143" cy="143" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="169" cy="143" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="195" cy="143" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="221" cy="143" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="247" cy="143" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="13" cy="169" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="39" cy="169" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="65" cy="169" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="91" cy="169" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="117" cy="169" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="143" cy="169" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="169" cy="169" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="195" cy="169" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="221" cy="169" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="247" cy="169" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="13" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="39" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="65" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="91" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="117" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="143" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="169" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="195" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="221" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="247" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="13" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="39" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="65" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="91" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="117" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="143" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="169" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="195" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="221" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="247" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="13" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="39" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="65" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="91" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="117" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="143" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="169" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="195" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="221" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="247" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
 </svg>
-    <p class="small">Stanford University, published in <em>PNAS</em> (2020). The researchers tested five speech
-      recognition systems &mdash; Amazon, Apple, Google, IBM and Microsoft &mdash; with the same sentences.
-      Non-native speakers run into the same wall.</p>
+        <figcaption><b>47 of 100</b>people in the EU can have a conversation in English</figcaption></figure>
+      <figure><svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" class="waffle2" role="img" aria-label="70 out of 100 young Europeans">
+<circle cx="13" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="13" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="39" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="65" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="91" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="117" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="143" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="143" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="143" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="143" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="143" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="143" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="143" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="143" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="143" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="143" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="169" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="39" cy="169" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="65" cy="169" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="91" cy="169" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="117" cy="169" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="143" cy="169" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="169" cy="169" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="195" cy="169" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="221" cy="169" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="247" cy="169" r="10" fill="#ffe27a" stroke="#23211e" stroke-width="1.4"/>
+<circle cx="13" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="39" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="65" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="91" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="117" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="143" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="169" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="195" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="221" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="247" cy="195" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="13" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="39" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="65" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="91" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="117" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="143" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="169" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="195" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="221" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="247" cy="221" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="13" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="39" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="65" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="91" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="117" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="143" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="169" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="195" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="221" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+<circle cx="247" cy="247" r="10" fill="#faf8f4" stroke="#c9c1b5" stroke-width="1.4"/>
+</svg>
+        <figcaption><b>70 of 100</b>young Europeans &mdash; and that&rsquo;s exactly where Denglisch comes from</figcaption></figure>
+    </div>
+    <p class="small">European Commission, Eurobarometer &ldquo;Europeans and their languages&rdquo; (2024).</p>
   </div>
 </section>
 
 <!-- 4 -->
-<section class="slide figslide">
+<section class="slide">
   <div class="inner">
-    <p class="kicker">why this changes the language</p>
-    <h2>The machine does not just listen. It decides.</h2>
-    <div class="figwrap"><svg viewBox="0 0 1200 196" xmlns="http://www.w3.org/2000/svg" class="chain" role="img" aria-label="Accent, wrong transcription, less reach, changed pronunciation">
-<rect x="1" y="26" width="262" height="112" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="19" y="54" font-size="13" font-weight="700" fill="#8a827a" letter-spacing="1">1</text>
-<text x="19" y="84" font-size="18" font-weight="400" fill="#23211e">You speak with</text>
-<text x="19" y="107" font-size="18" font-weight="400" fill="#23211e">an accent</text>
-<path d="M 273 82 L 295 82" stroke="#23211e" stroke-width="2"/>
-<path d="M 295 82 l -7 -5 M 295 82 l -7 5" stroke="#23211e" stroke-width="2" fill="none"/>
-<rect x="313" y="26" width="262" height="112" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="331" y="54" font-size="13" font-weight="700" fill="#8a827a" letter-spacing="1">2</text>
-<text x="331" y="84" font-size="18" font-weight="400" fill="#23211e">The AI writes it</text>
-<text x="331" y="107" font-size="18" font-weight="400" fill="#23211e">down wrong</text>
-<path d="M 585 82 L 607 82" stroke="#23211e" stroke-width="2"/>
-<path d="M 607 82 l -7 -5 M 607 82 l -7 5" stroke="#23211e" stroke-width="2" fill="none"/>
-<rect x="625" y="26" width="262" height="112" rx="3" fill="#ffffff" stroke="#23211e" stroke-width="1"/>
-<text x="643" y="54" font-size="13" font-weight="700" fill="#8a827a" letter-spacing="1">3</text>
-<text x="643" y="84" font-size="18" font-weight="400" fill="#23211e">The algorithm shows</text>
-<text x="643" y="107" font-size="18" font-weight="400" fill="#23211e">it to fewer people</text>
-<path d="M 897 82 L 919 82" stroke="#23211e" stroke-width="2"/>
-<path d="M 919 82 l -7 -5 M 919 82 l -7 5" stroke="#23211e" stroke-width="2" fill="none"/>
-<rect x="937" y="26" width="262" height="112" rx="3" fill="#23211e" stroke="#23211e" stroke-width="2"/>
-<text x="955" y="54" font-size="13" font-weight="700" fill="#a9a29a" letter-spacing="1">4</text>
-<text x="955" y="84" font-size="18" font-weight="700" fill="#ffffff">You change how</text>
-<text x="955" y="107" font-size="18" font-weight="700" fill="#ffffff">you speak</text>
-<text x="1" y="178" font-size="15" fill="#8a827a">and the machine never had to change at all</text>
-</svg></div>
-    <p class="lead">TikTok and YouTube read your video through automatic captions.
-      If the caption is wrong, <span class="mark">fewer people ever see you</span> &mdash;
-      and creators are already changing their pronunciation to fix that.</p>
+    <p class="kicker">what Denglisch is</p>
+    <h2>Three ways English gets into German</h2>
+    <div class="kinds">
+      <div class="kind">
+        <span class="no">1</span>
+        <h3>Taken as it is</h3>
+        <div class="ex">das Meeting<br>das Team<br>der Job<br>das Feedback</div>
+        <p class="note">Same word &mdash; it just gets a German article: <b>der, die, das</b>.</p>
+      </div>
+      <div class="kind">
+        <span class="no">2</span>
+        <h3>English word, German grammar</h3>
+        <div class="ex">downloaden<br>chillen<br>googeln<br>liken</div>
+        <p class="note"><b>ich habe gechillt</b> &mdash; &ldquo;I chilled&rdquo;. English inside, German outside.</p>
+      </div>
+      <div class="kind">
+        <span class="no">3</span>
+        <h3>Fake English</h3>
+        <div class="ex">das Handy<br>der Beamer<br>das Public Viewing</div>
+        <p class="note">Looks English. <b>No English speaker</b> uses it like that.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- 5 -->
-<section class="slide haspic">
-  <div class="inner"><div>
-    <p class="kicker">my argument</p>
-    <h2>AI should learn our accents.<br>Not the other way around.</h2>
-    <ul class="plan">
-      <li><span class="no">1</span><span class="what">Where the idea came from &mdash; <b>my own voice</b></span></li>
-      <li><span class="no">2</span><span class="what">What <b>Standard English Ideology</b> means: one way of speaking counts as the correct one</span></li>
-      <li><span class="no">3</span><span class="what">The <b>Stanford study</b> &mdash; and what it means for anyone with an accent</span></li>
-      <li><span class="no">4</span><span class="what">What this does to people online &mdash; <b>fewer views, less money</b></span></li>
-      <li><span class="no">5</span><span class="what">What I think has to change &mdash; <b>better training data</b></span></li>
-    </ul>
-    <p class="lead">If you do not sound standard, fewer people see you.<br>
-      Software created a language problem.</p>
-  </div>
-    <div class="picwrap"><img class="pic" style="width:400px" src="img/05-learning.webp" alt="a phone sitting on a chair taking notes while people speak to it"></div>
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">Denglisch in real life</p>
+    <h2>How young Germans actually talk</h2>
+    <div class="talk">
+      <div class="row"><span class="de">Das ist so <span class="en">cringe</span>.</span><span class="gl">That&rsquo;s so cringe.</span></div>
+      <div class="row"><span class="de">Ich bin komplett <span class="en">lost</span>.</span><span class="gl">I&rsquo;m totally lost.</span></div>
+      <div class="row"><span class="de"><span class="en">Actually</span> hab ich keine Zeit.</span><span class="gl">Actually, I don&rsquo;t have time.</span></div>
+      <div class="row"><span class="de">Das war so <span class="en">random</span>.</span><span class="gl">That was so random.</span></div>
+      <div class="row"><span class="de"><span class="en">Literally</span> jeder war da.</span><span class="gl">Literally everyone was there.</span></div>
+      <div class="row"><span class="de">&mdash; Ich hab keinen Bock. &mdash; <span class="en">Same</span>.</span><span class="gl">&ldquo;I can&rsquo;t be bothered.&rdquo; &ldquo;Same.&rdquo;</span></div>
+    </div>
+    <p class="lead">No translation, no new meaning &mdash; just <span class="mark">English words dropped into a German sentence.</span></p>
   </div>
 </section>
 
 <!-- 6 -->
 <section class="slide">
   <div class="inner">
-    <p class="kicker">the essay &middot; a first draft</p>
-    <div class="essay">
-      <p>A few days ago, I was trying to use a voice-to-text feature on my phone, but it
-      produced a lot of mistakes. Since I often speak German with a Bavarian dialect, the AI
-      simply struggled to understand me. This everyday situation made me think about our
-      course topic and how technology handles the English language. AI and algorithms are
-      becoming more and more present in our daily lives&mdash;whether you like it or not. But
-      I realized that these tools do not just passively transcribe what we say; they are
-      actually starting to change how people speak English. Because algorithms often only
-      understand one specific standard, users are forced to adapt their voices to the machine.
-      In this essay, I want to discuss how AI enforces <q>Standard English Ideology</q> and how
-      this changes the power dynamics of modern communication.</p>
+    <p class="kicker">Jugendwort des Jahres</p>
+    <h2>Germany&rsquo;s Youth Word of the Year</h2>
+    <div class="yw">
+      <div>
+        <h3>2008 &ndash; 2018 &middot; chosen by a jury</h3>
+        <div class="chips"><span class="w de">Gammelfleischparty<i>2008</i></span><span class="w de">hartzen<i>2009</i></span><span class="w de">Niveaulimbo<i>2010</i></span><span class="w en">Swag<i>2011</i></span><span class="w en">YOLO<i>2012</i></span><span class="w other">Babo<i>2013</i></span><span class="w de">L&auml;uft bei dir<i>2014</i></span><span class="w en">Smombie<i>2015</i></span><span class="w en">fly sein<i>2016</i></span><span class="w de">I bims<i>2017</i></span><span class="w de">Ehrenmann<i>2018</i></span></div>
+        <p class="count"><b>4 of 11</b> English</p>
+      </div>
+      <div>
+        <h3>since 2020 &middot; young people vote themselves</h3>
+        <div class="chips"><span class="w en">lost<i>2020</i></span><span class="w en">cringe<i>2021</i></span><span class="w en">smash<i>2022</i></span><span class="w en">goofy<i>2023</i></span><span class="w other">Aura<i>2024</i></span><span class="w en">das crazy<i>2025</i></span><span class="w en">ragebait<i>2026</i></span></div>
+        <p class="count"><b>6 of 7</b> English</p>
+      </div>
+    </div>
+    <p class="lead">Since young people choose, almost every winner is English.
+      2025 even won <span class="mark">&ldquo;das crazy&rdquo;</span> &mdash; an English word with a German article.</p>
+    <p class="small">yellow = English &middot; dashed = from another language (Babo, Aura) &middot; 2019: no winner. Source: Langenscheidt.</p>
+  </div>
+</section>
 
-      <p>While thinking about my own experience, I noticed that modern technology perfectly
-      shows how this ideology works in the real world today. When we look at auto-caption tools
-      or speech recognition, we can see a clear power dynamic. Most of these AI models are
-      trained on data from white, standard American English speakers. For example, a 2020 study
-      from Stanford University tested speech recognition systems from large tech companies. The
-      researchers found that the software made significantly more mistakes when Black people
-      were speaking compared to white speakers. The same issue applies to non-native speakers
-      from all over the world. Because they have an accent, the software simply fails to
-      transcribe their words correctly.</p>
-
-      <p>This creates a strict power imbalance on platforms like TikTok or YouTube. These
-      platforms use automatic transcriptions to understand what a video is about and to show it
-      to the right audience. If the algorithm cannot understand your accent, your content might
-      not reach many people, which means you can lose views and even income. Because of this
-      disadvantage, we can see a real shift in the English language: many creators are actually
-      starting to change their pronunciation. They try to sound more like the standard just to
-      be understood by the machine.</p>
-
-      <p>In conclusion, Standard English Ideology is built directly into the software we use
-      every day, and it is actively changing how people speak globally. If you do not fit the
-      linguistic standard, you lose visibility online. Since English is an international
-      language, AI must be trained to understand diverse accents, instead of forcing everyone
-      to adapt to one single standard.</p>
+<!-- 7 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">quiz &middot; fake English</p>
+    <h2>These words look English.<br>But what do Germans mean by them?</h2>
+    <p class="tap">guess first &mdash; then click the word</p>
+    <div class="cards fake">
+      <div class="card"><div class="q">Handy</div><div class="a"><span class="in">Germans mean</span>a mobile phone<span class="in">in English it means</span>useful</div></div>
+      <div class="card"><div class="q">Beamer</div><div class="a"><span class="in">Germans mean</span>a projector<span class="in">in English it means</span>slang for a BMW</div></div>
+      <div class="card"><div class="q">Public Viewing</div><div class="a"><span class="in">Germans mean</span>watching football together on a big screen<span class="in">in English it means</span>looking at a dead body before a funeral</div></div>
+      <div class="card"><div class="q">Oldtimer</div><div class="a"><span class="in">Germans mean</span>a vintage car<span class="in">in English it means</span>an old person</div></div>
+      <div class="card"><div class="q">Home Office</div><div class="a"><span class="in">Germans mean</span>working from home<span class="in">in British English it means</span>the ministry for police and borders</div></div>
+      <div class="card"><div class="q">Smoking</div><div class="a"><span class="in">Germans mean</span>a tuxedo<span class="in">in English it means</span>smoking a cigarette</div></div>
     </div>
   </div>
 </section>
 
+<!-- 8 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">the case against &middot; 1</p>
+    <h2>Words German already had</h2>
+    <table>
+      <tr><th>Denglisch</th><th>the German word that was already there</th></tr>
+      <tr><td>Meeting</td><td class="fr">Besprechung</td></tr>
+      <tr><td>Feedback</td><td class="fr">R&uuml;ckmeldung</td></tr>
+      <tr><td>Event</td><td class="fr">Veranstaltung</td></tr>
+      <tr><td>Sale</td><td class="fr">Ausverkauf</td></tr>
+      <tr><td>Deadline</td><td class="fr">Abgabetermin</td></tr>
+    </table>
+    <p class="lead">These words don&rsquo;t fill a gap. They replace German words that worked fine &mdash;
+      <span class="mark">often just because English sounds more modern.</span></p>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">the case against &middot; 2</p>
+    <h2>Even Germans don&rsquo;t know how to say it.</h2>
+    <p class="gap-line">Ich habe die Datei <span class="blank">&nbsp;</span> .</p>
+    <p class="small">&ldquo;I have ____ the file.&rdquo; Which one is correct? Vote!</p>
+    <div class="opts seg" data-step="1">
+      <span>gedownloadet</span><span>downgeloadet</span><span>downloadet</span>
+    </div>
+    <div class="rv" data-step="1">
+      <p class="lead">The Duden dictionary says: <span class="mark">downgeloadet</span>.
+        But in real German texts, about one in three people write <b>gedownloadet</b>.</p>
+      <p class="small">Same problem everywhere: liken &rarr; geliked or gelikt? updaten &rarr; geupdatet or upgedatet?</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">the case against &middot; 3</p>
+    <h2>&ldquo;Come in and find out.&rdquo;</h2>
+    <p class="lead">That was the English slogan of Douglas, a big German perfume shop.</p>
+    <p class="lead">In a 2003 study, many Germans understood it as:<br>
+      <span class="mark">&ldquo;Come in &mdash; and find your way back out.&rdquo;</span></p>
+    <div class="rule"></div>
+    <p class="lead">Not everyone in Germany speaks English.
+      If people don&rsquo;t understand it, Denglisch doesn&rsquo;t bring people together &mdash; <b>it shuts them out.</b></p>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">the case for</p>
+    <h2>Sometimes English is simply the better word.</h2>
+    <div class="kinds">
+      <div class="kind">
+        <span class="no">1</span>
+        <h3>New things need names</h3>
+        <div class="ex">Smartphone<br>Laptop<br>Podcast<br>Streaming</div>
+        <p class="note">German never had <b>its own words</b> for these.</p>
+      </div>
+      <div class="kind">
+        <span class="no">2</span>
+        <h3>Short and international</h3>
+        <div class="ex">Team<br>Job<br>online<br>okay</div>
+        <p class="note">The same word works in Berlin, Paris <b>and Seoul.</b></p>
+      </div>
+      <div class="kind">
+        <span class="no">3</span>
+        <h3>German makes it its own</h3>
+        <div class="ex">Handyvertrag<br>Onlineshop<br>Teamleiter<br>gechillt</div>
+        <p class="note">English parts, built into <b>German words and grammar.</b></p>
+      </div>
+    </div>
+    <p class="small">And it&rsquo;s not new: <em>Balkon</em> and <em>Toilette</em> came from French 300 years ago. Today nobody notices.</p>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">our answer</p>
+    <h2>Better or worse? Neither. It&rsquo;s change.</h2>
+    <div class="two">
+      <div>
+        <h3>worse when &hellip;</h3>
+        <ul>
+          <li>it replaces a German word for no reason <span class="eg">&mdash; Meeting instead of Besprechung</span></li>
+          <li>people don&rsquo;t understand it <span class="eg">&mdash; &ldquo;come in and find out&rdquo;</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>better when &hellip;</h3>
+        <ul>
+          <li>it names something new <span class="eg">&mdash; Computer, Internet, Smartphone</span></li>
+          <li>it helps Germans talk to the rest of Europe</li>
+          <li>Germans get creative with it <span class="eg">&mdash; Handy, Beamer</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="lead">German isn&rsquo;t dying. It does what it always did: it takes words and makes them German.</p>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">your turn</p>
+    <h2>Germany says <span class="mark">Handy</span>.<br>Korea says <span class="mark">핸드폰</span>.</h2>
+    <p class="small" style="margin-top:-.2em">핸드폰 = <em>haen-deu-pon</em> = &ldquo;hand phone&rdquo;</p>
+    <p class="lead">Two countries, two made-up English words for the same thing.
+      Neither one is used in the UK or the US.</p>
+    <div class="rule"></div>
+    <p class="lead"><b>So &mdash; is English making German better or worse?<br>And what about Korean?</b></p>
+    <p class="poll">hands up &rarr; <b>better</b> &middot; <b>worse</b> &middot; <b>neither</b></p>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <div class="inner">
+    <p class="kicker">sources</p>
+    <h2>Where we got this from.</h2>
+    <ul class="refs">
+      <li><span class="what">English in the EU</span> &mdash; European Commission, Special Eurobarometer 540 &ldquo;Europeans and their languages&rdquo; (2024; survey autumn 2023, 26,523 people)</li>
+      <li><span class="what">Youth Word of the Year</span> &mdash; Jugendwort des Jahres, Langenscheidt, winners 2008&ndash;2026</li>
+      <li><span class="what">&ldquo;downgeloadet&rdquo;</span> &mdash; Duden online, conjugation of <em>downloaden</em>; usage in real texts from the DeReKo corpus, as reported by Neerlandistiek (2021)</li>
+      <li><span class="what">&ldquo;Come in and find out&rdquo;</span> &mdash; study on English advertising slogans by the agency Endmark (2003)</li>
+    </ul>
+  </div>
+</section>
 
 <div class="bar-nav">
-  <span>When the machine doesn’t understand you</span>
+  <span>Denglisch</span>
   <span class="right">
-    <span><b id="cur">1</b> / <span id="tot">6</span> &nbsp;&nbsp; &larr; &rarr;</span>
+    <span><b id="cur">1</b> / <span id="tot">14</span> &nbsp;&nbsp; &larr; &rarr;</span>
     <button class="fsbtn" id="fs" title="fullscreen (F)">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
         <path d="M1 4V1h3M8 1h3v3M11 8v3H8M4 11H1V8"/>
@@ -458,6 +854,9 @@
     slides[i].querySelectorAll('.rv').forEach(function(e){
       e.classList.toggle('shown', back);
     });
+    slides[i].querySelectorAll('.dz').forEach(function(e){
+      e.classList.toggle('lit', back);
+    });
     document.getElementById('cur').textContent = i + 1;
     document.getElementById('prog').style.width = ((i + 1) / slides.length * 100) + '%';
     window.scrollTo(0, 0);
@@ -471,6 +870,7 @@
   }
   function revealAll(){
     slides[i].querySelectorAll('.rv').forEach(function(e){ e.classList.add('shown'); });
+    slides[i].querySelectorAll('.dz').forEach(function(e){ e.classList.add('lit'); });
   }
   function next(){ show(i + 1); }
   function prev(){ show(i - 1); }
@@ -490,6 +890,8 @@
 
   // click the right side = next, left side = back (but not on a quiz card)
   document.addEventListener('click', function(e){
+    var dz = e.target.closest('.dz');
+    if (dz) { dz.classList.toggle('lit'); return; }
     var seg = e.target.closest('.seg');
     if (seg) { toggleStep(seg.dataset.step); return; }
     if (e.target.closest('.card') || e.target.closest('.fsbtn')) return;

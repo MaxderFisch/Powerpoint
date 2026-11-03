@@ -1,13 +1,41 @@
 # Global English — presentations
 
-Two presentations live in here. Both run in any browser: `→` next, `←` back,
-`F` fullscreen, or the button in the bottom right corner.
+Three presentations live in here. All of them run in any browser: `→` next,
+`←` back, `F` fullscreen, or the button in the bottom right corner.
 
 ---
 
-## 1. When the machine doesn't understand you
+## 1. Denglisch
 
 **This is the current one** — https://maxderfisch.github.io/Powerpoint/
+
+The influence of English on German, and whether it is making German better or
+worse. Youth language, the Youth Word of the Year, fake English like *Handy*
+and *Public Viewing*, and the arguments on both sides.
+
+14 slides, about 10 minutes, 4 speakers (slides 1–4, 5–7, 8–10, 11–14).
+On slide 2 you click the sentence, on slide 7 the quiz cards, on slide 9 the
+three options.
+
+- the deck: [index.html](index.html)
+- what to say: [denglisch-script.md](denglisch-script.md)
+- backup: [Denglisch.pdf](Denglisch.pdf)
+
+### Sources
+
+- English in the EU: European Commission, Special Eurobarometer 540
+  *Europeans and their languages* (2024). 47 % of EU citizens can hold a
+  conversation in English as a foreign language, about 70 % of young people.
+- Youth Word of the Year: Jugendwort des Jahres, Langenscheidt, 2008–2026.
+- *downgeloadet*: Duden online; usage in real texts from the DeReKo corpus, as
+  reported by Neerlandistiek (2021).
+- *Come in and find out*: study on English advertising slogans by Endmark (2003).
+
+---
+
+## 2. When the machine doesn't understand you
+
+The essay presentation — https://maxderfisch.github.io/Powerpoint/ai-and-standard-english.html
 
 Essay presentation: how AI enforces Standard English Ideology, and how speech
 recognition is quietly changing the way people pronounce English.
@@ -15,8 +43,8 @@ recognition is quietly changing the way people pronounce English.
 6 slides, 5 minutes of talking. Slide 6 is the essay itself and just stays on
 screen at the end.
 
-- the deck: [index.html](index.html)
-- what to say: [essay-script.md](essay-script.md)
+- the deck: [ai-and-standard-english.html](ai-and-standard-english.html)
+- what to say: [ai-and-standard-english-script.md](ai-and-standard-english-script.md)
 - backup: [AI-and-Standard-English.pdf](AI-and-Standard-English.pdf)
 
 ### Sources
@@ -28,7 +56,7 @@ screen at the end.
 
 ---
 
-## 2. English is a Thief
+## 3. English is a Thief
 
 The earlier presentation, from 14 September —
 https://maxderfisch.github.io/Powerpoint/english-is-a-thief.html
