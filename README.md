@@ -13,12 +13,13 @@ The influence of English on German, and whether it is making German better or
 worse. Youth language, the Youth Word of the Year, fake English like *Handy*
 and *Public Viewing*, and the arguments on both sides.
 
-14 slides, about 10 minutes, 4 speakers (slides 1–4, 5–7, 8–10, 11–14).
-On slide 2 you click the sentence, on slide 7 the quiz cards, on slide 9 the
+14 slides, about 10 minutes, 4 speakers. Max takes the slides with a lot of
+German (1–3 and 9–10), the others take 4–6, 7–8 and 11–14.
+On slide 2 you click the sentence, on slide 7 the quiz cards, on slide 10 the
 three options.
 
 - the deck: [index.html](index.html)
-- what to say: [denglisch-script.md](denglisch-script.md)
+- what to say: [denglisch-script.md](denglisch-script.md) · as PDF, one page per speaker: [Denglisch-Speaking-Script.pdf](Denglisch-Speaking-Script.pdf)
 - backup: [Denglisch.pdf](Denglisch.pdf)
 
 ### Sources
